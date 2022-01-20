@@ -1,0 +1,18 @@
+@media (max-width: 567px) {
+    .container {
+        --bs-gutter-x: 0px;
+    }
+
+    .main{
+        --pd: 6px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .slide-right--pd:first-child{
+        padding-top: var(--pd);
+    }
+
+}
