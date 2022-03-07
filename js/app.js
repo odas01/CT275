@@ -1,126 +1,70 @@
-const productItems = document.querySelectorAll(".product-item");
+import { products } from "./data.js";
 
-// old price
-const oldPrice = {
-    remainPrice(newPrice, percent) {
-        let price = (newPrice / (100 + percent)) * 100;
-        return parseInt(price);
-    },
-    convertStringToNum(string) {
-        let arrString = string.split("");
-        while (arrString.indexOf(".") !== -1) {
-            arrString.splice(arrString.indexOf("."), 1);
-        }
-        arrString.pop();
-        return parseInt(arrString.join(""));
-    },
-    convertNumToString(num) {
-        let result = num.toString().split("").reverse();
-        let count = result.length / 3 - 1;
-        let index = -1;
-        while (count > 0) {
-            result.splice((index += 4), 0, ".");
-            count--;
-        }
-        return result.reverse().join("") + "₫";
-    },
-    start() {
-        productItems.forEach((productItem) => {
-            let percentElement = productItem.querySelector(".product-percent span");
-            let priceNewElement = productItem.querySelector(".product-price--new");
-            let oldPriceElement = productItem.querySelector(".product-price--old");
-            let percent = parseInt(percentElement.innerHTML);
-            let priceNew = this.convertStringToNum(priceNewElement.innerHTML);
-            let oldPrice = this.convertNumToString(this.remainPrice(priceNew, percent));
-            oldPriceElement.innerHTML = oldPrice;
-        });
-    },
-};
-oldPrice.start();
-
-//create Storage
-function createStorage(key) {
-    const store = JSON.parse(localStorage.getItem(key)) ?? {};
-    const save = () => {
-        localStorage.setItem(key, JSON.stringify(store));
-    };
-    return {
-        get(key) {
-            return store[key];
-        },
-        set(key, value) {
-            store[key] = value;
-            save();
-        },
-        remove(key) {
-            delete store[key];
-            save();
-        },
-    };
+// alert when add product
+function alert(type = "suscess", icon = '<i class="fa-solid fa-check"></i>', title = "Thêm vào giỏ hàng") {
+    const alertsElement = document.querySelector(".alerts");
+    const alertElement = document.createElement("div");
+    alertElement.classList.add("alert");
+    alertElement.classList.add(`${type}`);
+    alertElement.innerHTML = `
+    ${icon}
+    <p>${title}</p>
+    <span class="countdown countdown--${type}"></span>
+    `;
+    alertsElement.appendChild(alertElement);
+    setTimeout(() => {
+        alertElement.style.animation = "slide_hide 2s ease forwards";
+    }, 4000);
+    setTimeout(() => {
+        alertElement.remove();
+    }, 6000);
 }
 
-// toast
-function alert(type, title = "Thành công", icon, message = "Đã thêm vào giỏ hàng ") {
-    const alert = document.querySelector("#alert");
-    if (alert) {
-        const toast = document.createElement("div");
-        toast.classList.add("alert", type);
-        toast.innerHTML = `
-        <div class="alert-icon ${icon}">
-            <i class="far fa-check-circle"></i>
-        </div>
-        <div class="alert-body">
-            <h3 class="alert-title">${title}</h3>
-            <span class="alert-msg">${message}</span>
-        </div>`;
-
-        alert.appendChild(toast);
-        setTimeout(() => {
-            alert.removeChild(toast);
-        }, 3100);
+// search
+const data = products.reduce((cur, product) => {
+    return cur.concat(product.data);
+}, []);
+const searchList = document.querySelector(".nav-search--list");
+const searchInput = document.querySelector(".nav-search--wrap input");
+searchInput.oninput = (e) => {
+    const value = e.target.value.trim().toLowerCase();
+    let html = "";
+    if (value) {
+        html =
+            data
+                .filter((item) => item.name.toLowerCase().includes(value))
+                .reduce((cur, item) => {
+                    console.log(123);
+                    return (
+                        cur +
+                        `<div class="nav-search--item">
+                            <img
+                            src="${item.img}"
+                            alt=""
+                            />
+                            <span> ${item.name}</span>
+                        </div>`
+                    );
+                }, "") ||
+                        `<div class="nav-search--empty">
+                            <img src="./asset/img/nocart.png" alt="">
+                            <span>Không có sản phẩm phù hợp</span>
+                        </div>`;
     }
-}
-
-// add product to storage
-(function addProduct() {
-    const cartStorage = createStorage("product");
-    productItems.forEach((productItem, index) => {
-        // init product
-        const img = productItem.querySelector(".product-img img").src;
-        const name = productItem.querySelector(".product-name").innerText;
-        const price = oldPrice.convertStringToNum(productItem.querySelector(".product-price--new").innerHTML);
-        const objProduct = { id: index, img, name, price };
-
-        // add product
-        productItem.querySelector(".add-cart").onclick = () => {
-            let productListStorage = JSON.parse(localStorage.getItem("product")) ?? [];
-            let quanlity;
-            if (!productListStorage[index]) {
-                alert();
-                cartStorage.set(index, JSON.stringify(objProduct));
-                
-                //set quanlity
-                quanlity = Object.keys(JSON.parse(localStorage.getItem("product"))).length;
-                localStorage.setItem("quanlity", quanlity);
-                printQuanlity();
-            } else {
-                alert("alert--error", "Thất bại", "alert-icon--error", "Sản phẩm đã có trong giỏ hàng");
-            }
-        };
-    });
-})();
-
-//set quanlity
-function printQuanlity() {
-    const quanlityElement = document.querySelector(".nav-cart--quanlity");
-    quanlityElement.innerHTML = localStorage.getItem("quanlity") ?? 0;
-}
-printQuanlity();
+    searchList.innerHTML = html;
+};
 
 // nav
-window.addEventListener("scroll", () => {
-    const nav = document.querySelector(".nav");
-    const main = document.querySelector(".main");
-    nav.classList.toggle("nav-fixed", window.scrollY > 0);
-    main.classList.toggle("main-margin", window.scrollY > 0);
+window.addEventListener("scroll", function (event) {
+    document.querySelector(".nav").classList.toggle("nav-scroll", this.scrollY > 70);
 });
+
+//scrollToTop
+document.querySelector(".support-toTo").addEventListener("click", () =>
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    })
+);
+
+export { alert };

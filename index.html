@@ -5,7 +5,12 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
 
         <!-- css -->
         <link rel="stylesheet" href="./asset/css/style.css" />
@@ -14,14 +19,16 @@
         <!-- font family -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
 
         <!-- icon -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-        <!-- Owl Carousel -->
-        <link rel="stylesheet" href="./asset/OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/docs/assets/owlcarousel/assets/owl.carousel.min.css" />
-        <link rel="stylesheet" href="./asset/OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/docs/assets/owlcarousel/assets/owl.theme.default.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
 
         <!-- aos -->
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -29,43 +36,104 @@
     </head>
     <body>
         <div class="app">
-            <div id="alert"></div>
             <div class="nav">
-                <div class="container d-flex justify-content-between align-items-center">
-                    <div class="logo">
+                <div
+                    class="nav-wrap container d-flex justify-content-between align-items-center"
+                >
+                    <div class="nav-menu--mobile">
+                        <i class="fa-solid fa-bars"></i>
+                        <div class="nav-menu--list">
+                            <div class="nav-menu--top">
+                                <i class="far fa-user"></i>
+                                <div>
+                                    <a href="">Đăng ký</a>
+                                    <a href="">Đăng nhập</a>
+                                </div>
+                            </div>
+                            <div class="nav-menu--body">
+                                <a href="">Trang chủ</a>
+                                <a href="">Liên hệ</a>
+                                <a href="">Hỗ trợ</a>
+                            </div>
+                            <div class="nav-menu--bottom">
+                                <a href="">Điện thoại <span>0329881171</span></a>
+                                <a href="">Email <span>lntthanh3317@gmail.com</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-logo">
                         <img src="./asset/img/logo.png" alt="" />
                     </div>
+
+                    <div class="nav-search">
+                        <div class="nav-search--wrap">
+                            <input
+                                type="text"
+                                placeholder="Nhập tên sản phẩm cần tìm..."
+                            />
+                            <div class="nav-search--btn">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <div class="nav-search--list"></div>
+                        </div>
+                    </div>
+
                     <div class="nav-list">
-                        <div class="nav-item user-select-none">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-phone-alt"></i>
-                                <span>Hotline: 0329123456</span>
-                            </a>
-                        </div>
-                        <div class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="far fa-question-circle"></i>
-                                <span>Trợ giúp</span>
-                            </a>
-                        </div>
                         <div class="nav-item">
                             <a class="nav-link nav-cart" href="">
-                                <i class="far fa-edit"></i>
-                                <span>Kiểm tra đơn hàng</span>
+                                <img src="./asset/img/cart.png" alt="" />
+                                <span>Đơn hàng</span>
                             </a>
                             <div class="nav-cart--quanlity"></div>
                         </div>
+
                         <div class="nav-item">
                             <a class="nav-link" href="">
                                 <i class="fas fa-sign-in-alt"></i>
                                 <span>Đăng nhập</span>
                             </a>
                         </div>
-                        <div class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="fa fa-key"></i>
-                                <span>Đăng ký</span>
-                            </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="container">
+                    <div class="category-wrap">
+                        <div class="category-item">
+                            <i class="fa-solid fa-bars"></i>
+                            <span>Danh mục sản phẩm</span>
+                            <div class="category-item--list">
+                                <div class="category-item--wrap">
+                                    <img src="./asset/img/laptop.png" alt="" />
+                                    <a href="#pc"> Laptop </a>
+                                </div>
+                                <div class="category-item--wrap">
+                                    <img src="./asset/img/pc.png" alt="" />
+                                    <a href="#pc"> PC </a>
+                                </div>
+                                <div class="category-item--wrap">
+                                    <img
+                                        src="./asset/img/keyboard.png"
+                                        alt=""
+                                    />
+                                    <a href="#pc"> Phụ kiện Laptop/PC </a>
+                                </div>
+                                <div class="category-item--wrap">
+                                    <img src="./asset/img/usb.png" alt="" />
+                                    <a href="#pc"> USB </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category-item">
+                            <a href="">Trang chủ</a>
+                        </div>
+                        <div class="category-item">
+                            <a href="">Liên hệ</a>
+                        </div>
+                        <div class="category-item">
+                            <a href="">Hỗ trợ</a>
                         </div>
                     </div>
                 </div>
@@ -73,86 +141,105 @@
             <div class="main">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-2">
-                            <div class="menu">
-                                <a class="menu-item">
-                                    <span>Sản phẩm khuyến mãi</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>sản phẩm mới</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Laptop</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Linh kiện máy tính</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Tản nhiệt - Cooling</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Màn Hình Máy Tính</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Phụ Kiện - Gaming Gear</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Phần Mềm Bản Quyền</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Thiết Bị Văn Phòng</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Thiết Bị Âm Thanh</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Thiết Bị Mạng</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Phụ Kiện PC - Laptop</span>
-                                </a>
-                                <a class="menu-item">
-                                    <span>Camera An Ninh</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-sm-12 col-12">
-                            <div class="slider">
-                                <div class="owl-carousel owl-theme">
-                                    <div class="item">
-                                        <img src="./asset/img/slide2.jpg" alt="" />
-                                    </div>
-                                    <div class="item">
-                                        <img src="./asset/img/slide3.png" alt="" />
-                                    </div>
-                                    <div class="item">
-                                        <img src="./asset/img/silde1.jpg" alt="" />
-                                    </div>
-                                </div>
-                                <div class="slide-bootom">
-                                    <div class="slide-bottom--pd">
-                                        <div class="slide-img">
-                                            <img class="slide--hover" src="./asset/img/slide7.png" alt="" />
+                        <div class="slider col-lg-8 col-sm-12 col-12">
+                            <div class="slider-top">
+                                <div
+                                    id="carouselExampleControls"
+                                    class="carousel slide"
+                                    data-bs-ride="carousel"
+                                >
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img
+                                                src="./asset/img/silde1.jpg"
+                                                class="d-block w-100"
+                                                alt="..."
+                                            />
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img
+                                                src="./asset/img/slide2.jpg"
+                                                class="d-block w-100"
+                                                alt="..."
+                                            />
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img
+                                                src="./asset/img/slide3.png"
+                                                class="d-block w-100"
+                                                alt="..."
+                                            />
                                         </div>
                                     </div>
-                                    <div class="slide-bottom--pd">
-                                        <div class="slide-img">
-                                            <img class="slide--hover" src="./asset/img/slide8.png" alt="" />
-                                        </div>
+                                    <button
+                                        class="carousel-control-prev"
+                                        type="button"
+                                        data-bs-target="#carouselExampleControls"
+                                        data-bs-slide="prev"
+                                    >
+                                        <span
+                                            class="carousel-control-prev-icon"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span class="visually-hidden"
+                                            >Previous</span
+                                        >
+                                    </button>
+                                    <button
+                                        class="carousel-control-next"
+                                        type="button"
+                                        data-bs-target="#carouselExampleControls"
+                                        data-bs-slide="next"
+                                    >
+                                        <span
+                                            class="carousel-control-next-icon"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span class="visually-hidden"
+                                            >Next</span
+                                        >
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slide-bootom">
+                                <div class="slide-bottom--pd">
+                                    <div class="slide-img">
+                                        <img
+                                            class="slide--hover"
+                                            src="./asset/img/slide7.png"
+                                            alt=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="slide-bottom--pd">
+                                    <div class="slide-img">
+                                        <img
+                                            class="slide--hover"
+                                            src="./asset/img/slide8.png"
+                                            alt=""
+                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-12 col-12">
+                        <div class="col-lg-4 col-sm-12 col-12">
                             <div class="slide-right">
                                 <div class="slide-right--pd">
                                     <div class="slide-img">
-                                        <img class="slide--hover" src="./asset/img/slide5.png" alt="" />
+                                        <img
+                                            class="slide--hover"
+                                            src="./asset/img/slide5.png"
+                                            alt=""
+                                        />
                                     </div>
                                 </div>
                                 <div class="slide-right--pd">
                                     <div class="slide-img">
-                                        <img class="slide--hover" src="./asset/img/slide6.gif" alt="" />
+                                        <img
+                                            class="slide--hover"
+                                            src="./asset/img/slide6.gif"
+                                            alt=""
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -165,260 +252,63 @@
                                 <div class="col-lg-3">
                                     <div class="banner">
                                         <div class="banner-item">
-                                            <img src="./asset/img/laptop/banner2.png" alt="" />
+                                            <img
+                                                src="./asset/img/laptop/banner2.png"
+                                                alt=""
+                                            />
                                         </div>
                                         <div class="banner-item">
-                                            <img src="./asset/img/laptop/banner1.png" alt="" />
+                                            <img
+                                                src="./asset/img/laptop/banner1.png"
+                                                alt=""
+                                            />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
-                                    <div class="row">
+                                    <div class="row product-wrap">
                                         <div class="col-lg-3">
                                             <div class="product-item">
                                                 <div class="product-percent">
                                                     <span>-10%</span>
                                                 </div>
                                                 <div class="product-img">
-                                                    <img src="./asset/img/laptop/asus1.jpg" alt="" />
+                                                    <img
+                                                        src="./asset/img/laptop/asus1.jpg"
+                                                        alt=""
+                                                    />
                                                 </div>
                                                 <div class="product-body">
                                                     <p class="product-name">
-                                                        Asus VivoBook A415EA i5 1135G7 (AM1637W)
+                                                        Asus VivoBook A415EA i5
+                                                        1135G7 (AM1637W)
                                                     </p>
                                                     <div class="product-price">
-                                                        <span class="product-price--new">18.790.000₫</span>
+                                                        <span
+                                                            class="product-price--new"
+                                                            >18.790.000₫</span
+                                                        >
 
-                                                        <span class="product-price--old">
-                                                            19.999.000₫
+                                                        <span
+                                                            class="product-price--old"
+                                                        >
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
+                                                    <div
+                                                        class="add-cart product-bottom--img"
+                                                    >
                                                         <div></div>
                                                     </div>
-                                                    <div class="product-bottom--img">
+                                                    <div
+                                                        class="product-bottom--img"
+                                                    >
                                                         <div></div>
                                                     </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-10%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/laptop/dell1.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        Dell Gaming G3 15 i7 10750H (P89F002BWH)
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">31.990.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-12%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/laptop/asus2.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        Asus VivoBook A515EA OLED i5 1135G7 (L12032W)
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">19.550.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-7%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/laptop/lnv1.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        Lenovo Yoga 9 14ITL5 i7/1185G7 (82BG006EVN)
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">49.290.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-5%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/laptop/dell2.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        Dell Inspiron 14 5410 i5 1155G7 (N4I5547W1)
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">27.290.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-5%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/laptop/mac1.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        MacBook Pro 14 M1 Max 2021/32-core GPU
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">87.900.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-8%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/laptop/msi1.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        MSI Gaming Leopard GP76 11UG i7 11800H (823VN)
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">49.990.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-5%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/laptop/msi2.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        MSI Gaming GF65 Thin 10UE i5 10500H (286VN)
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">29.490.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
+                                                    <div
+                                                        class="product-bottom--img"
+                                                    >
                                                         <div></div>
                                                     </div>
                                                 </div>
@@ -434,291 +324,229 @@
                         <div class="product-list">
                             <div class="row">
                                 <div class="col-lg-9">
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-8%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc1.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        PC FPT E-POWER 002 Intel Core i3-10105 (3.7 GHz-4.4 GHz) /8 GB/120 GB/250 W
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">7.890.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-10%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc2.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        PC Gaming E-POWER 016 Core i5 10400F 2.9 GHz-4.3 GHz/8 GB/256 GB/500 W/GT 1050 Ti 4 GB
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">35.990.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-12%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc3.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        PC Gaming E-POWER 013 Core i5 10400F 2.9 GHz-4.3 GHz/8 GB/480 GB/600 W/GTX 1650 4 GB
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">20.399.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-8%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc4.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        PC Gaming E-POWER 014 Core i5 10400F 2.9 GHz-4.3 GHz/8 GB/256 GB/600 W/GTX 1650 4 GB
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">16.149.000</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-12%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc5.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        Máy tính All in one Asus E5202WHAK-BA102T i3 11100B/4GB/512GB-SSD/DVD-RW/21.5 FHD/Key-Mouse/W10SL
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">16.490.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-13%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc6.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        iMac 24" 2021 Retina 4.5K M1/8-Core CPU/8-Core GPU/8GB/512GB SSD
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">45.999.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-6%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc7.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        Máy tính để bàn HP 285 Pro G6 MT/AMD R5 4600G/ 8GB/ SSD 256GB/ RadeonTM Vega 7 Graphics/W10H
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">14.099.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-item">
-                                                <div class="product-percent">
-                                                    <span>-15%</span>
-                                                </div>
-                                                <div class="product-img">
-                                                    <img src="./asset/img/pc/pc8.jpg" alt="" />
-                                                </div>
-                                                <div class="product-body">
-                                                    <p class="product-name">
-                                                        PC FPT E-POWER 014 Ryzen 5 Pro 4650G 3.7 GHz-4.2 GHz/8 GB/240 GB/500 W
-                                                    </p>
-                                                    <div class="product-price">
-                                                        <span class="product-price--new">13.990.000₫</span>
-
-                                                        <span class="product-price--old"> </span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-bottom">
-                                                    <div class="add-cart product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                    <div class="product-bottom--img">
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="row product-wrap"></div>
                                 </div>
 
                                 <div class="col-lg-3">
                                     <div class="banner">
                                         <div class="banner-item">
-                                            <img src="./asset/img/pc/banner2.png" alt="" />
+                                            <img
+                                                src="./asset/img/pc/banner2.png"
+                                                alt=""
+                                            />
                                         </div>
                                         <div class="banner-item">
-                                            <img src="./asset/img/pc/banner1.jpg" alt="" />
+                                            <img
+                                                src="./asset/img/pc/banner1.jpg"
+                                                alt=""
+                                            />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div id="pagatation">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">Previous</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link text-secondary" href="#"
+                                        >2</a
+                                    >
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link text-secondary" href="#"
+                                        >3</a
+                                    >
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="brand">
+                        <h5 class="brand-title">
+                            CÁC NHÃN HIỆU ĐƯỢC ƯA CHUỘNG
+                        </h5>
+                        <div class="brand-list">
+                            <div class="brand-item">
+                                <img src="./asset/img/brand/apple.jpg" alt="" />
+                            </div>
+                            <div class="brand-item">
+                                <img src="./asset/img/brand/asus'.jpg" alt="" />
+                            </div>
+                            <div class="brand-item">
+                                <img
+                                    src="./asset/img/brand/crucial.png"
+                                    alt=""
+                                />
+                            </div>
+                            <div class="brand-item">
+                                <img src="./asset/img/brand/intel.png" alt="" />
+                            </div>
+                            <div class="brand-item">
+                                <img src="./asset/img/brand/msi.jpg" alt="" />
+                            </div>
+                            <div class="brand-item">
+                                <img src="./asset/img/brand/acer.png" alt="" />
+                            </div>
+                            <div class="brand-item">
+                                <img
+                                    src="./asset/img/brand/kingston.png"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="pagatation">
-                <div class="container">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link text-secondary" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link text-secondary" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
+            <div class="footer">
+                <div class="container footer-container footer-list">
+                    <div class="footer-info row">
+                        <div class="footer-wrap col-lg-4 col-sm-6 col-12">
+                            <h5 class="footer-title">Về chúng tôi</h5>
+                            <div class="footer-content">
+                                <p>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Khu II, đường 3/2 <br />
+                                    phường Xuân Khánh, quận Ninh Kiều <br />
+                                    thành phố Cần Thơ, Việt Nam
+                                </p>
+                                <p>
+                                    <i class="fas fa-envelope"></i
+                                    >ct18816dhct06@student.ctu.edu.vn
+                                </p>
+                            </div>
+                        </div>
+                        <div class="footer-wrap col-lg-4 col-sm-6 col-12">
+                            <h5 class="footer-title">Chính sách</h5>
+                            <div class="footer-content">
+                                <p>Chính sách bán hàng</p>
+                                <p>Chính sách đổi trả</p>
+                                <p>Chính sách bảo mật</p>
+                                <p>Điều khoản dịch vụ</p>
+                            </div>
+                        </div>
+                        <div class="footer-wrap col-lg-4 col-sm-6 col-12">
+                            <h5 class="footer-title">Hỗ trợ khách hàng</h5>
+                            <div class="footer-content">
+                                <p>Bảo hành: <span>0329881171</span></p>
+                                <p>Gửi yêu cầu bảo hành</p>
+                                <p>Gửi yêu cầu đổi trả</p>
+                                <p>
+                                    P. Kinh doanh:<br />
+                                    <span>lntthanh3317@gmail.com</span>
+                                </p>
+                                <p>
+                                    P. Hỗ trợ khách hàng:><br />
+                                    <span>lntthanh3317@gmail.com</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-contact row">
+                        <div class="footer-wrap col-lg-4 col-sm-6 col-12">
+                            <h5 class="footer-title">Phương thức thanh toán</h5>
+                            <div class="footer-content">
+                                <img src="./asset/img/payment.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="footer-wrap col-lg-4 col-sm-6 col-12">
+                            <h5 class="footer-title">Kết nối với chúng tôi</h5>
+                            <div
+                                class="footer-content footer-content--contact d-flex"
+                            >
+                                <div class="footer-content--icon">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </div>
+                                <div class="footer-content--icon">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </div>
+                                <div class="footer-content--icon">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </div>
+                                <div class="footer-content--icon">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div class="footer-content--icon">
+                                    <i class="fa-brands fa-google"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer-wrap col-lg-4 col-sm-12 col-12">
+                            <h5 class="footer-title">
+                                Đăng ký nhận khuyến mãi
+                            </h5>
+                            <div class="footer-content">
+                                <input type="text" placeholder="@gmail.com" />
+                                <button>Đăng ký</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-license">
+                        <p>© Bản quyền thuộc về <b> lntthanh3317</b></p>
+                    </div>
                 </div>
             </div>
+
+            <div class="support">
+                <a href="" class="support-item">
+                    <div class="support-item--img">
+                        <img src="./asset/img/mess.svg" alt="" />
+                    </div>
+                    <div class="support-item--content">
+                        Chat với Tiến Thành để được tư vấn
+                    </div>
+                </a>
+                <a href="" class="support-item">
+                    <div class="support-item--img">
+                        <img src="./asset/img/place.svg" alt="" />
+                    </div>
+                    <div class="support-item--content">
+                        ktxB, đại học Cần Thơ
+                    </div>
+                </a>
+                <a href="" class="support-item">
+                    <div class="support-item--img">
+                        <img src="./asset/img/ship.svg" alt="" />
+                    </div>
+                    <div class="support-item--content">
+                        Giao hàng toàn quốc, tận nơi miễn phí
+                    </div>
+                </a>
+                <a href="tel:0329881171" class="support-item">
+                    <div class="support-item--img">
+                        <img src="./asset/img/hpne.svg" alt="" />
+                    </div>
+                    <div class="support-item--content">0329881171</div>
+                </a>
+
+                <div class="support-toTo">
+                    <i class="fa-solid fa-chevron-up"></i>
+                    <i class="fa-solid fa-chevron-up"></i>
+                </div>
+            </div>
+
+            <div class="alerts"></div>
         </div>
 
         <!-- Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"
+        ></script>
 
         <!-- aos -->
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -726,34 +554,9 @@
             AOS.init();
         </script>
 
-        <script src="./js/app.js"></script>
-        <script src="./js/cart.js"></script>
+        <script type="module" src="./js/render.js"></script>
+        <script type="module" src="./js/app.js"></script>
+        <script type="module" src="./js/cart.js"></script>
+        <script type="module" src="./js/product.js"></script>
     </body>
-
-    <!-- Owl Carousel -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./asset/OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/docs/assets/owlcarousel/owl.carousel.min.js"></script>
-    <script>
-        $(".owl-carousel").owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            dots: false,
-            autoplay: true,
-            autoplayTimeout: 3500,
-            autoplayHoverPause: true,
-            smartSpeed: 600,
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                600: {
-                    items: 1,
-                },
-                1000: {
-                    items: 1,
-                },
-            },
-        });
-    </script>
 </html>
