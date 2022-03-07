@@ -31,7 +31,11 @@ body {
 }
 
 .nav-scroll {
-    background: url(../img/navbar.png);
+    background: url(../img/navbar/navbar.png);
+}
+
+.nav-menu--mobile {
+    display: none;
 }
 
 .nav-fixed {
