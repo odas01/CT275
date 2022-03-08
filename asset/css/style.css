@@ -18,6 +18,11 @@ body {
     background-color: #ccc;
 }
 
+/* DROPDOWN */
+.dropdown{
+    display: none;
+}
+
 /* NAVBAR */
 .nav {
     width: 100%;
@@ -32,10 +37,6 @@ body {
 
 .nav-scroll {
     background: url(../img/navbar/navbar.png);
-}
-
-.nav-menu--mobile {
-    display: none;
 }
 
 .nav-fixed {
@@ -164,11 +165,14 @@ body {
     font-size: 13px;
     transition: all 0.2s linear !important;
     cursor: pointer;
-    position: relative;
 }
 
 .nav-link:hover {
     background-color: rgba(0, 0, 0, 0.03);
+}
+
+.nav-item:first-child{
+    position: relative;
 }
 
 .nav-cart img {

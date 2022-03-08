@@ -114,6 +114,7 @@
     }
 
     /* FOOTER */
+
     .footer-list {
         padding: 12px 24px;
     }
@@ -179,6 +180,102 @@
 }
 
 @media (max-width: 739px) {
+    /* DROPDOWN */
+    .dropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        display: block;
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .dropdown-overlay{
+        position: absolute;
+        width:100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .dropdown-body {
+        width: 77%;
+        height: 100%;
+        background-color: #f5f6fa;
+        transform: translateX(-100%);
+        transition: all 0.3s ease;
+        z-index: 10000;
+    }
+
+    .dropdown--list {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .dropdown--top {
+        display: flex;
+        background-color: #0abde3;
+        height: fit-content;
+        padding-left: 12px;
+    }
+
+    .dropdown--top > i {
+        margin: auto 0;
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .dropdown--top > div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dropdown--top > div a {
+        padding: 8px 24px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .dropdown--top > div a:first-child {
+        font-size: 18px;
+    }
+
+    .dropdown--main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dropdown--main a {
+        padding: 12px 24px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #111;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .dropdown--bottom {
+        height: 200px;
+        padding-left: 24px;
+    }
+
+    .dropdown--bottom a {
+        text-decoration: none;
+        font-size: 14px;
+        display: block;
+        color: #111;
+    }
+
+    .dropdown--bottom a span {
+        color: #0abde3;
+    }
+
     /* NAV */
     .nav {
         min-height: 110px;
@@ -187,16 +284,16 @@
 
     .nav-wrap {
         flex-direction: column;
+        position: relative;
     }
 
-    .nav-menu--mobile {
+    .nav-menu {
         position: absolute;
-        left: 14px;
-        top: 14px;
-        display: none;
+        left: 13px;
+        top: 6px;
     }
 
-    .nav-menu--mobile i {
+    .nav-menu > i {
         font-size: 24px;
         color: #fff;
     }
@@ -222,7 +319,32 @@
     }
 
     .nav-list {
+        /* display: none; */
+        height: unset;
+    }
+
+    .nav-item:last-child {
         display: none;
+    }
+
+    .nav-item:first-child {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .nav-cart img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .nav-cart span {
+        font-size: 12px;
+    }
+
+    .nav-cart--quanlity {
+        top: -8px;
+        left: 39px;
     }
 
     .nav-search--item {
@@ -249,11 +371,11 @@
         padding: 10px 16px;
     }
 
-    .category-item:first-child > *{
+    .category-item:first-child > * {
         font-size: 14px !important;
     }
 
-    .category-item--wrap a{
+    .category-item--wrap a {
         font-size: 13px;
     }
 
@@ -305,6 +427,14 @@
     }
 
     /* FOOTER */
+    .footer .row {
+        margin-right: unset;
+    }
+
+    .footer-container {
+        max-width: unset;
+    }
+
     .footer-list {
         padding-top: 20px;
         padding-left: 12px;
@@ -362,7 +492,7 @@
         height: 34px;
     }
 
-    .support-item--content{
+    .support-item--content {
         font-size: 10px;
         padding: 8px;
     }
@@ -371,5 +501,22 @@
         margin-top: 60px;
         width: 38px;
         height: 38px;
+    }
+
+    /* ALERT */
+    .alerts{
+        right: -6px;
+        top: 110px;
+    }
+
+    .alert{
+        min-width: 190px;
+        padding: 8px;
+        margin-top: 10px;
+        opacity: 0.8;
+    }
+
+    .alert p{
+        font-size: 12px;
     }
 }

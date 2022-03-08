@@ -19,7 +19,6 @@ function alert(type = "suscess", icon = '<i class="fa-solid fa-check"></i>', tit
         alertElement.remove();
     }, 6000);
 }
-
 // search
 const data = products.reduce((cur, product) => {
     return cur.concat(product.data);
@@ -34,7 +33,6 @@ searchInput.oninput = (e) => {
             data
                 .filter((item) => item.name.toLowerCase().includes(value))
                 .reduce((cur, item) => {
-                    console.log(123);
                     return (
                         cur +
                         `<div class="nav-search--item">
@@ -67,4 +65,24 @@ document.querySelector(".support-toTo").addEventListener("click", () =>
     })
 );
 
+// dropdown
+const menuIcon = document.querySelector('.nav-menu > i');
+const dropdownElement = document.querySelector('.dropdown');
+const dropdownBodyElement = document.querySelector(".dropdown-body");
+menuIcon.onclick = () => {
+    Object.assign(dropdownElement.style, {
+        opacity: '1',
+        visibility: 'visible'
+    });
+    dropdownBodyElement.style.transform = 'translateX(0%)';
+    
+    //đóng menu
+    document.querySelector('.dropdown-overlay').onclick = (e) => {
+        Object.assign(dropdownElement.style, {
+            opacity: '0',
+            visibility: 'hidden'
+        });
+        dropdownBodyElement.style.transform = 'translateX(-100%)';  
+    }
+}
 export { alert };
