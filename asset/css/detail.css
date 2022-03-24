@@ -1,0 +1,115 @@
+.main {
+    padding: 40px 0;
+}
+
+.main__img {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.main__img img {
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    object-fit: contain;
+}
+
+.main__parameter{
+    padding: 20px;
+    margin-top: 20px;
+    border:solid 1px #e9ecef;
+    background-color: #f8f9fa;
+}
+
+.main__detail {
+    padding: 40px 50px 20px;
+}
+
+.main__detail-wrap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main__detail-name {
+    width: 100%;
+    font-size: 30px;
+}
+
+.main__detail-descoration {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #68707d;
+}
+
+.main__detail-price {
+    margin-top: 20px;
+    position: relative;
+}
+
+.main__detai-price--new {
+    color: #1d2025;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.main__detai-price--old {
+    color: #b6bcc8;
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+.main__detail-price--percent {
+    width: fit-content;
+    padding: 4px 8px;
+    border-radius: 100rem;
+    color: hsl(26, 100%, 55%);
+    background-color: rgba(255, 125, 26, 0.2);
+    position: absolute;
+    left: 140px;
+    top: 0;
+}
+
+.main__detail-quanlity {
+    background-color: hsl(223, 64%, 98%);
+    width: fit-content;
+    border-radius: 6px;
+}
+
+.main__detail-quanlity span {
+    display: inline-block;
+    padding: 10px 14px;
+    width:40px;
+}
+
+
+.main__detail-quanlity input{
+    outline: none;
+    border: none;
+    width:40px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.main__detail-quanlity input::-webkit-outer-spin-button,.main__detail-quanlity input::-webkit-inner-spin-button {
+    -webkit-appearance:none;
+    margin:0;
+}
+
+.main__detail-quanlity span:not(:nth-child(2)):hover{
+    cursor: pointer;
+}
+
+.main__detail-buy {
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: #ff7d1a;
+    color: #fff;
+    border-radius: 8px;
+}
