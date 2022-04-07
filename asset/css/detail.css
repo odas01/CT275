@@ -1,4 +1,5 @@
 .main {
+    min-height: 660px;
     padding: 40px 0;
 }
 
@@ -12,13 +13,6 @@
     height: 100%;
     max-height: 450px;
     object-fit: contain;
-}
-
-.main__parameter{
-    padding: 20px;
-    margin-top: 20px;
-    border:solid 1px #e9ecef;
-    background-color: #f8f9fa;
 }
 
 .main__detail {
@@ -80,24 +74,24 @@
 .main__detail-quanlity span {
     display: inline-block;
     padding: 10px 14px;
-    width:40px;
+    width: 40px;
 }
 
-
-.main__detail-quanlity input{
+.main__detail-quanlity input {
     outline: none;
     border: none;
-    width:40px;
+    width: 40px;
     text-align: center;
     background-color: transparent;
 }
 
-.main__detail-quanlity input::-webkit-outer-spin-button,.main__detail-quanlity input::-webkit-inner-spin-button {
-    -webkit-appearance:none;
-    margin:0;
+.main__detail-quanlity input::-webkit-outer-spin-button,
+.main__detail-quanlity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-.main__detail-quanlity span:not(:nth-child(2)):hover{
+.main__detail-quanlity span:not(:nth-child(2)):hover {
     cursor: pointer;
 }
 
@@ -112,4 +106,94 @@
     background-color: #ff7d1a;
     color: #fff;
     border-radius: 8px;
+}
+
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .main__img{
+        margin: 0 auto;
+        display: flex;
+        justify-content:center;
+    }
+    .main__img img{
+        width:50%;
+    }
+
+    .main__detail-name{
+        font-size: 24px;
+    }
+
+    .main__detail-descoration{
+        margin-top: 8px;
+        font-size: 13px;
+    }
+
+    .main__detail-price{
+        margin-top: 12px;
+    }
+
+    .main__detai-price--new{
+        font-size: 22px;
+    }
+
+    .main__detail-price--percent{
+        left: 120px;
+    }
+}
+
+
+/* mobile */
+@media (max-width: 739px) {
+    .main__img{
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .main__detail {
+        padding: 32px 12px 12px;
+    }
+
+    .main__detail-name {
+        font-size: 22px;
+    }
+
+    .main__detail-descoration {
+        margin-top: 8px;
+        font-size: 13px;
+    }
+
+    .main__detai-price--new {
+        font-size: 20px;
+    }
+
+    .main__detail-price--percent {
+        font-size: 16px;
+        padding: 2px 6px;
+        left: 114px;
+        margin-bottom: 0;
+    }
+
+    .main__detai-price--old {
+        font-size: 12px;
+    }
+
+    .main__detail-quanlity span {
+        font-size: 10px;
+        width: 32px;
+    }
+
+    .main__detail-quanlity input {
+        font-size: 14px;
+    }
+
+    .main__detail-buy {
+        right: 52px;
+        width: 42%;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .main__detail-buy i {
+        margin-right: 8px;
+    }
 }

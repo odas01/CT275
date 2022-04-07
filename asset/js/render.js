@@ -45,3 +45,24 @@ export const oldPrice = {
         });
     },
 };
+
+export function alerts(type, message) {
+    const alerts = $('<div>');
+    alerts.addClass('alerts');
+    const imgSrc = type
+        ? '../asset/img/check.png'
+        : '../asset/img/warning.png';
+    const html = `
+    <div class="alert">
+        <div class="alert__img">
+            <img src="${imgSrc}" alt="" />
+        </div>
+        <span class="alert__message">${message}</span>
+    </div>
+    `;
+    alerts.html(html);
+    $('body').append(alerts);
+    setTimeout(() => {
+        alerts.remove();
+    }, 1500);
+}
