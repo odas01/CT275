@@ -1,4 +1,4 @@
-export const productItems = document.querySelectorAll('.product-item');
+export const productItems = document.querySelectorAll('.product__item');
 // old price
 export const oldPrice = {
     remainPrice(newPrice, percent) {
@@ -22,47 +22,5 @@ export const oldPrice = {
             count--;
         }
         return result.reverse().join('') + '₫';
-    },
-    start() {
-        productItems.forEach((productItem) => {
-            let percentElement = productItem.querySelector(
-                '.product-percent span'
-            );
-            let priceNewElement = productItem.querySelector(
-                '.product-price--new'
-            );
-            let oldPriceElement = productItem.querySelector(
-                '.product-price--old'
-            );
-
-            // percentElement.innerHTML = parseInt(Math.random() * 15) + '%';
-            let percent = parseInt(percentElement.innerHTML);
-            let priceNew = this.convertStringToNum(priceNewElement.innerHTML);
-            let oldPrice = this.convertNumToString(
-                this.remainPrice(priceNew, percent)
-            );
-            oldPriceElement.innerHTML = oldPrice;
-        });
-    },
+    }
 };
-
-export function alerts(type, message) {
-    const alerts = $('<div>');
-    alerts.addClass('alerts');
-    const imgSrc = type
-        ? '../asset/img/check.png'
-        : '../asset/img/warning.png';
-    const html = `
-    <div class="alert">
-        <div class="alert__img">
-            <img src="${imgSrc}" alt="" />
-        </div>
-        <span class="alert__message">${message}</span>
-    </div>
-    `;
-    alerts.html(html);
-    $('body').append(alerts);
-    setTimeout(() => {
-        alerts.remove();
-    }, 1500);
-}

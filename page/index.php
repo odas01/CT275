@@ -33,57 +33,57 @@ include '../function.php';
 
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Computers</title>
 </head>
 
 <body>
     <div class="app">
+        <?php include "../partials/header.php"; ?>
         <div class="container">
-            <?php include "../partials/header.php"; ?>
-            <?php include "../partials/category.php"; ?>
+            <!-- <?php include "../partials/category.php"; ?> -->
+            <?php include "../partials/breadcrumb.php"; ?>
             <?php include "../partials/slider.php"; ?>
 
             <div class="main">
-                <div class="product" id="laptop" data-aos="fade-up">
-                    <h2 class="product-title">LAPTOP</h2>
-                    <div class="product-list">
+                <div class="product" id="laptop" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="product__title">LAPTOP</h2>
+                    <div class="product__list">
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="banner">
-                                    <div class="banner-item">
+                                    <div class="banner__item">
                                         <img src="../asset/img/laptop/banner2.png" alt="" />
                                     </div>
-                                    <div class="banner-item">
+                                    <div class="banner__item">
                                         <img src="../asset/img/laptop/banner1.png" alt="" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-9">
-                                <div class="row product-wrap">
+                                <div class="row product__wrap">
                                     <?php
                                     $query = 'SELECT * FROM `product` WHERE `type_id` = 1 limit 8';
                                     if ($result = mysqli_query($conn, $query)) {
                                         while ($row = mysqli_fetch_array($result)) { ?>
                                             <div class='col-lg-3 col-sm-4 col-6 '>
-                                                <a class='product-item' href='detail.php?id=<?= $row['id'] ?>' data-bs-toggle="tooltip" 
-                                                data-bs-placement="left" title='<?= str_replace(',', '<br>', $row['detail']); ?>
-                                                        '>
-                                                    <div class='product-percent'>
-                                                        <span><?= $row['percent'] ?>%</span>
+                                                <a class='product__item' href='detail.php?id=<?= $row['id'] ?>' >
+                                                    <div class='product__percent'>
+                                                        <span>-<?= $row['percent'] ?>%</span>
                                                     </div>
-                                                    <div class='product-img'>
+                                                    <div class='product__img'>
                                                         <img src='.<?= $row['img'] ?>' alt='' />
                                                     </div>
-                                                    <div class='product-body'>
-                                                        <p class='product-name'>
+                                                    <div class='product__body'>
+                                                        <p class='product__name'>
                                                             <?= $row['name'] ?>
                                                         </p>
-                                                        <div class='product-price'>
-                                                            <span class='product-price--new'>
+                                                        <div class='product__price'>
+                                                            <span class='product__price-new'>
                                                                 <?= number_format($row['price'], 0, ".", ".") ?>₫
                                                             </span>
 
-                                                            <span class='product-price--old'>
+                                                            <span class='product__price-old'>
                                                                 <?= old_price($row['price'], $row['percent']) ?>
                                                             </span>
                                                         </div>
@@ -98,36 +98,34 @@ include '../function.php';
                         </div>
                     </div>
                 </div>
-                <div class="product" id="pc" data-aos="flip-left">
-                    <h2 class="product-title">PC / MÁY BÀN</h2>
-                    <div class="product-list">
+                <div class="product" id="pc" data-aos="flip-left" data-aos-duration="1000">
+                    <h2 class="product__title">PC / MÁY BÀN</h2>
+                    <div class="product__list">
                         <div class="row">
                             <div class="col-lg-9">
-                                <div class="row product-wrap">
+                                <div class="row product__wrap">
                                     <?php
                                     $query = 'SELECT * FROM `product` WHERE `type_id` = 2 limit 8';
                                     if ($result = mysqli_query($conn, $query)) {
                                         while ($row = mysqli_fetch_array($result)) { ?>
                                             <div class='col-lg-3 col-sm-4 col-6 '>
-                                                <a class='product-item' href='detail.php?id=<?= $row['id'] ?>' data-bs-toggle="tooltip" 
-                                                data-bs-placement="right" title='<?= str_replace(',', '<br>', $row['detail']); ?>
-                                                        '>
-                                                    <div class='product-percent'>
-                                                        <span><?= $row['percent'] ?>%</span>
+                                                <a class='product__item' href='detail.php?id=<?= $row['id'] ?>'>
+                                                    <div class='product__percent'>
+                                                        <span>-<?= $row['percent'] ?>%</span>
                                                     </div>
-                                                    <div class='product-img'>
+                                                    <div class='product__img'>
                                                         <img src='.<?= $row['img'] ?>' alt='' />
                                                     </div>
-                                                    <div class='product-body'>
-                                                        <p class='product-name'>
+                                                    <div class='product__body'>
+                                                        <p class='product__name'>
                                                             <?= $row['name'] ?>
                                                         </p>
-                                                        <div class='product-price'>
-                                                            <span class='product-price--new'>
+                                                        <div class='product__price'>
+                                                            <span class='product__price-new'>
                                                                 <?= number_format($row['price'], 0, ".", ".") ?>₫
                                                             </span>
 
-                                                            <span class='product-price--old'>
+                                                            <span class='product__price-old'>
                                                                 <?= old_price($row['price'], $row['percent']) ?>
                                                             </span>
                                                         </div>
@@ -143,10 +141,10 @@ include '../function.php';
 
                             <div class="col-lg-3">
                                 <div class="banner">
-                                    <div class="banner-item">
+                                    <div class="banner__item">
                                         <img src="../asset/img/pc/banner2.png" alt="" />
                                     </div>
-                                    <div class="banner-item">
+                                    <div class="banner__item">
                                         <img src="../asset/img/pc/banner1.jpg" alt="" />
                                     </div>
                                 </div>
@@ -154,45 +152,44 @@ include '../function.php';
                         </div>
                     </div>
                 </div>
-                <div class="product" id="ram" data-aos="flip-right">
-                    <h2 class="product-title">PC / MÁY BÀN</h2>
-                    <div class="product-list">
+                <div class="product" id="ram" data-aos="flip-right" data-aos-duration="1000">
+                    <h2 class="product__title">RAM</h2>
+                    <div class="product__list">
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="banner">
-                                    <div class="banner-item">
+                                    <div class="banner__item">
                                         <img src="../asset/img/ram/banner1.jpeg" alt="" />
                                     </div>
-                                    <div class="banner-item">
+                                    <div class="banner__item">
                                         <img src="../asset/img/ram/banner2.jpeg" alt="" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-9">
-                                <div class="row product-wrap">
+                                <div class="row product__wrap">
                                     <?php
                                     $query = 'SELECT * FROM `product` WHERE `type_id` = 3 limit 8';
                                     if ($result = mysqli_query($conn, $query)) {
                                         while ($row = mysqli_fetch_array($result)) { ?>
                                             <div class='col-lg-3 col-sm-4 col-6 '>
-                                                <a target="_blank" class='product-item' href='detail.php?id=<?= $row['id'] ?>' data-bs-toggle="tooltip" 
-                                                data-bs-placement="left" title='<?= str_replace(',', '<br>', $row['detail']); ?>'>
-                                                    <div class='product-percent'>
-                                                        <span><?= $row['percent'] ?>%</span>
+                                                <a class='product__item' href='detail.php?id=<?= $row['id'] ?>'>
+                                                    <div class='product__percent'>
+                                                        <span>-<?= $row['percent'] ?>%</span>
                                                     </div>
-                                                    <div class='product-img'>
+                                                    <div class='product__img'>
                                                         <img src='.<?= $row['img'] ?>' alt='' />
                                                     </div>
-                                                    <div class='product-body'>
-                                                        <p class='product-name'>
+                                                    <div class='product__body'>
+                                                        <p class='product__name'>
                                                             <?= $row['name'] ?>
                                                         </p>
-                                                        <div class='product-price'>
-                                                            <span class='product-price--new'>
+                                                        <div class='product__price'>
+                                                            <span class='product__price-new'>
                                                                 <?= number_format($row['price'], 0, ".", ".") ?>₫
                                                             </span>
 
-                                                            <span class='product-price--old'>
+                                                            <span class='product__price-old'>
                                                                 <?= old_price($row['price'], $row['percent']) ?>
                                                             </span>
                                                         </div>
@@ -211,7 +208,6 @@ include '../function.php';
                 </div>
             </div>
 
-            <?php include "../partials/pagatation.php"; ?>
             <?php include "../partials/brand.php"; ?>
             <?php include "../partials/support.php"; ?>
         </div>
@@ -231,10 +227,11 @@ include '../function.php';
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
     <script type="module" src="../asset/js/app.js"></script>
 
     <script>
-        document.querySelectorAll(".product-item").forEach((tooltip) => {
+        document.querySelectorAll(".product__item").forEach((tooltip) => {
             new bootstrap.Tooltip(tooltip, {
                 html: true
             });

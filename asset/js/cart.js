@@ -1,4 +1,4 @@
-import { oldPrice, alerts } from './render.js';
+import { oldPrice } from './render.js';
 $(document).ready(function () {
     const productItems = $('.cart__detail-item');
     const total = document.querySelector(
@@ -48,7 +48,7 @@ $(document).ready(function () {
     }
 
     function renderTotal() {
-        sumQuanlity.innerHTML = `SỐ LƯỢNG: ${cartInfor.quanlity()}`;
+        sumQuanlity.innerHTML = `<b style="font-weight: bold !important">Số lượng:</b> ${cartInfor.quanlity()}`;
         sumPrice.innerHTML = `${oldPrice.convertNumToString(
             cartInfor.price()
         )}`;
@@ -145,14 +145,11 @@ $(document).ready(function () {
 
     // mở form
     $('.cart__total-buy').click(function (e) {
-        if ($('.badge').text() == 0) {
-            alerts(false, 'Vui lòng thêm sản phẩm vào giỏ hàng!');
-        } else {
-            cartUser.css('display', 'block');
-            inputs.each((index, input) => {
-                $(input).keyup(validate);
-            });
-        }
+        cartUser.css('display', 'block');
+        inputs.each((index, input) => {
+            $(input).keyup(validate);
+        });
+
     });
 
     // đóng form
@@ -189,12 +186,21 @@ $(document).ready(function () {
             }
         });
         if (!isErrorForm) {
-            alerts(true, 'Đơn hàng đã được khởi tạo thành công');
+            Swal.fire({
+                icon: 'success',
+                text: 'Đơn hàng đã được khởi tạo thành công',
+                timer: 1500
+            })
+            // alerts(true, 'Đơn hàng đã được khởi tạo thành công');
             setTimeout(() => {
                 formUser[0].submit();
             }, 1600);
         } else {
-            alerts(false, 'Vui lòng điền đầy đủ thông tin');
+            Swal.fire({
+                icon: 'error',
+                text: 'vui lòng điền đầy đủ thông tin',
+                timer: 1500
+            })
         }
     });
 

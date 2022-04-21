@@ -5,52 +5,48 @@ include '../connect.php';
 include '../array.php';
 include '../function.php';
 
-//giỏ hàng có sản phẩm?
-// print_r($_SESSION['cart']);
+$userID = $_SESSION['user']['id'];
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
         case 'add':
             $newPd = array_keys($_POST['quantity'])[0];
-            $arrCart = array_keys($_SESSION['cart']) ;
+            $arrCart = array_keys($_SESSION['cart']);
+            
             if (!in_array($newPd, $arrCart)) {
                 $result = mysqli_query($conn, "SELECT  `price` FROM `product` WHERE `id` = {$newPd}");
                 $price = mysqli_fetch_array($result);
 
-                $result = mysqli_query(
+                mysqli_query(
                     $conn,
                     "INSERT INTO `cart` (`id`, `user_id`, `product_id`, `price`, `quantity`) VALUES
-                (NULL, '{$_SESSION['user']['id']}', '{$newPd}', '{$price['price']}', '{$_POST['quantity'][$newPd]}');"
+                (NULL, '{$userID}', '{$newPd}', '{$price['price']}', '{$_POST['quantity'][$newPd]}');"
                 );
 
                 update_cart();
             } else {
                 update_cart();
 
-                $result = mysqli_query(
+                mysqli_query(
                     $conn,
-                    "SELECT `id` FROM `cart` WHERE `user_id` = {$_SESSION['user']['id']} AND `product_id` = $newPd"
-                );
-                $id = mysqli_fetch_array($result)[0];
-
-                $result = mysqli_query(
-                    $conn,
-                    "UPDATE `cart` SET `quantity` = '{$_SESSION['cart'][$newPd]}' WHERE `cart`.`id` = $id;"
+                    "UPDATE `cart` SET `quantity` = {$_SESSION['cart'][$newPd]}  WHERE `cart`.`id` = (
+                        SELECT `id` FROM `cart` WHERE `user_id` = $userID AND `product_id` = $newPd
+                    )"
                 );
             }
-            // exit;
             header('Location: ./cart.php');
             break;
         case 'delete':
-            if (isset($_GET['id'])) {
-                $result = mysqli_query($conn, "delete from `cart` where `product_id`={$_GET['id']} and `user_id`={$_SESSION['user']['id']} ;");
-                unset($_SESSION['cart'][$_GET['id']]);
-            }   
+            unset($_SESSION['cart'][$_GET['id']]);
+            
+            mysqli_query($conn, "delete from `cart` where `product_id`={$_GET['id']} and `user_id`={$userID} ;");
+
+            if (count($_SESSION['cart']) == 0)
+                $_SESSION['cart'] = array();
             header('Location: ./cart.php');
             break;
         case 'submit':
             if (!empty($_POST['quantity'])) {
-
                 $products = mysqli_query($conn, "SELECT * FROM `product` WHERE `id` IN (" . implode(",", array_keys($_SESSION['cart'])) . ")");
                 $total = 0;
                 $array = [];
@@ -61,11 +57,13 @@ if (isset($_GET['action'])) {
                 $total = total_price($total, $_POST['shipping'], $_POST['code']);
 
                 //order
-                $insertOrder = mysqli_query(
+                mysqli_query(
                     $conn,
                     "INSERT INTO `order` (`id`,`user_id`, `name`, `address`, `phone`, `total`, `note`, `ship`, `code`, `order_date`) VALUES 
-                    (NULL, {$_SESSION['user']['id']}, '{$_POST['name']}', '{$_POST['address']}', '{$_POST['phone']}', '{$total}', '{$_POST['note']}'
-                    ,'{$_POST['shipping']}', '{$_POST['code']}', '" . date('Y-m-d H:i:s') . "')"
+                    (NULL, {$userID}, '{$_POST['name']}', '{$_POST['address']}', '{$_POST['phone']}', '{$total}', '{$_POST['note']}'
+                    ,'{$_POST['shipping']}', '{$_POST['code']}', '" .
+                        date('Y-m-d H:i:s') .
+                        "')"
                 );
 
                 //order detail
@@ -76,10 +74,10 @@ if (isset($_GET['action'])) {
                 }
 
                 $insertString = chop($insertString, ',');
-                $inserCart = mysqli_query($conn, "INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `price`, `quantity`) VALUES {$insertString}");
+                mysqli_query($conn, "INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `price`, `quantity`) VALUES {$insertString}");
 
                 //delete cart
-                $result = mysqli_query($conn, "delete from `cart` where `user_id`={$_SESSION['user']['id']} ;");
+                mysqli_query($conn, "delete from `cart` where `user_id`={$userID} ;");
                 $_SESSION['cart'] = array();
                 header('Location: ./cart.php');
             }
@@ -89,12 +87,14 @@ if (isset($_GET['action'])) {
 }
 
 //render sản phẩm trong SESSION=
-$result = mysqli_query($conn, "SELECT *
+$result = mysqli_query(
+    $conn,
+    "SELECT *
     FROM `cart`
     INNER JOIN `product`
     ON `cart`.`product_id` = `product`.`id`
-    WHERE `cart`.`user_id` = {$_SESSION['user']['id']}");
-
+    WHERE `cart`.`user_id` = {$userID}"
+);
 ?>
 
 <!DOCTYPE html>
@@ -118,9 +118,6 @@ $result = mysqli_query($conn, "SELECT *
 
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <!-- aos -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Your Cart</title>
@@ -128,14 +125,15 @@ $result = mysqli_query($conn, "SELECT *
 
 <body>
     <div class="app">
+        <?php include "../partials/header.php"; ?>
         <div class="container">
-            <?php include "../partials/header.php"; ?>
+            <?php include "../partials/breadcrumb.php"; ?>
 
             <div class="main">
                 <form action="cart.php?action=submit" method="post" class="cart">
                     <div class="row">
                         <div class="col-lg-8 cart__left">
-                            <h4 class="cart__title">Shopping cart</h4>
+                            <h4 class="cart__title">GIỎ HÀNG</h4>
                             <?php if (!empty($_SESSION['cart'])) { ?>
                                 <div class="cart__detail">
                                     <div class="cart__detail-title">
@@ -146,11 +144,7 @@ $result = mysqli_query($conn, "SELECT *
                                     </div>
                                     <div class="cart__detail-list">
                                         <?php if (!empty($result)) {
-                                            $num = 1;
-                                            $quanlity = 0;
-                                            $total = 0;
-                                            while ($row = mysqli_fetch_array($result)) {
-                                        ?>
+                                            while ($row = mysqli_fetch_array($result)) { ?>
                                                 <div class="cart__detail-item" data-index="<?= $row['id'] ?>">
                                                     <div class="cart__detail-info">
                                                         <div class="cart__detail-img">
@@ -161,46 +155,45 @@ $result = mysqli_query($conn, "SELECT *
                                                         </span>
                                                     </div>
                                                     <div class="cart__detail-body">
-                                                    <div class="cart__detail-quanlity">
-                                                        <div class="btn-down">
-                                                            <i class="fa-solid fa-minus"></i>
+                                                        <div class="cart__detail-quanlity">
+                                                            <div class="btn-down">
+                                                                <i class="fa-solid fa-minus"></i>
+                                                            </div>
+                                                            <input class="quanlity" type="number" value="<?= $row['quantity'] ?>" name="quantity[<?= $row['id'] ?>]"></inp>
+                                                            <div class="btn-up">
+                                                                <i class="fa-solid fa-plus"></i>
+                                                            </div>
                                                         </div>
-                                                        <input class="quanlity" type="number" value="<?= $row['quantity'] ?>" name="quantity[<?= $row['id'] ?>]"></inp>
-                                                        <div class="btn-up">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </div>
-                                                    </div>
-                                                    <span class="cart__detail-price"><?= number_format($row['price'], 0, ".", ".") ?>₫</span>
-                                                    <span class="cart__detail-total"><?= number_format($row['price'] * $row['quantity'], 0, ".", ".") ?>₫</span>
-                                                    <span class="cart__detail-delete" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $row['id'] ?>" data-bs-toggle="tooltip" data-bs-placement="right" title="Xóa sản phẩm">
-                                                        <i class="fa-solid fa-trash-can"></i>
-                                                    </span>
-                                                    <div class="modal fade" id="exampleModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Bạn có chắc chắn xóa sản phẩm?
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trở về</button>
+                                                        <span class="cart__detail-price"><?= number_format($row['price'], 0, ".", ".") ?>₫</span>
+                                                        <span class="cart__detail-total"><?= number_format($row['price'] * $row['quantity'], 0, ".", ".") ?>₫</span>
+                                                        <span class="cart__detail-delete" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $row['id'] ?>" data-bs-toggle="tooltip" data-bs-placement="right" title="Xóa sản phẩm">
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </span>
+                                                        <div class="modal fade" id="exampleModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Bạn có chắc chắn xóa sản phẩm?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trở về</button>
 
-                                                                    <a href="cart.php?action=delete&id=<?= $row['id'] ?>">
-                                                                        <button type="button" class="btn btn-primary">Xóa
-                                                                        </button>
-                                                                    </a>
+                                                                        <a href="cart.php?action=delete&id=<?= $row['id'] ?>">
+                                                                            <button type="button" class="btn btn-primary">Xóa
+                                                                            </button>
+                                                                        </a>
 
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </div>
                                                 </div>
-                                        <?php
-                                            }
+                                        <?php }
                                         } ?>
                                     </div>
                                 </div>
@@ -225,7 +218,7 @@ $result = mysqli_query($conn, "SELECT *
                         </div>
                         <div class="col-lg-4">
                             <div class="cart__total">
-                                <h4 class="cart__title">Total</h4>
+                                <h4 class="cart__title">TỔNG TIỀN</h4>
                                 <div class="cart__total-info">
                                     <div class="cart__total-top">
                                         <span></span>
@@ -257,7 +250,7 @@ $result = mysqli_query($conn, "SELECT *
                                     </div>
 
                                     <div class="cart__total-price--total">
-                                        <span>Tổng tiền:</span>
+                                        <span>TỔNG TIỀN:</span>
                                         <span></span>
                                     </div>
                                     <div class="cart__total-buy">MUA</div>
@@ -302,6 +295,9 @@ $result = mysqli_query($conn, "SELECT *
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <script type="module" src="../asset/js/app.js"></script>
     <script type="module" src="../asset/js/cart.js"></script>

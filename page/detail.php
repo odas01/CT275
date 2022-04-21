@@ -7,7 +7,6 @@ include '../function.php';
 
 $result = mysqli_query($conn, 'select * from product where id = ' . $_GET['id']);
 $product = mysqli_fetch_array($result);
-
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +41,9 @@ $product = mysqli_fetch_array($result);
 
 <body>
     <div class="app">
+        <?php include "../partials/header.php"; ?>
         <div class="container">
-            <?php include "../partials/header.php"; ?>
+            <?php include "../partials/breadcrumb.php"; ?>
 
             <div class="main">
                 <div class="row">
@@ -60,7 +60,7 @@ $product = mysqli_fetch_array($result);
                                 </h4>
 
                                 <div class="main__detail-descoration">
-                                    <?= str_replace(',', '<br>', $product['detail']); ?>
+                                    <?= str_replace(',', '<br>', $product['detail']) ?>
                                 </div>
                                 <div class="main__detail-price">
                                     <p class="main__detai-price--new">
@@ -70,7 +70,7 @@ $product = mysqli_fetch_array($result);
                                         <?= old_price($product['price'], $product['percent']) ?>
                                     </p>
                                     <div class="main__detail-price--percent">
-                                        <span><?= $product['percent'] ?></span>%
+                                        <span><?=- $product['percent'] ?></span>%
                                     </div>
                                 </div>
 
@@ -82,7 +82,7 @@ $product = mysqli_fetch_array($result);
                                         <input type="number" value="1" min="1" name="quantity[<?= $product['id'] ?>]" />
                                         <span><i class="fa-solid fa-plus"></i></span>
                                     </div>
-                                    <button  class="main__detail-buy"><i class="fa-solid fa-cart-shopping"></i>Add to cart</button>
+                                    <button class="main__detail-buy"><i class="fa-solid fa-cart-shopping"></i>THÊM VÀO GIỎ HÀNG</button>
                                 </form>
                             </div>
                         </div>

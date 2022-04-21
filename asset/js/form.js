@@ -1,19 +1,16 @@
-import { alerts } from './render.js';
 $(document).ready(function () {
     const validatorRules = {
+        //bắt buộc
         required(value) {
             return value.trim() ? undefined : "Vui lòng nhập trường này";
         },
+        //email đã tồn tại
         emailExist(value) {
             return !users.some(user => user.email == String(value)) ? undefined : "Email đã tồn tại";
         },
+        //email chưa tồn tại
         emailNotExist(value) {
             return users.some(user => user.email == String(value)) ? undefined : "Email chưa tồn tại";
-        },
-        match(value) {
-            const emailValue = $('.form__main input[name="email"]').val();
-            const emailMatch = users.find(user => user.email == String(emailValue));
-            return emailMatch?.password == value ? undefined : "Mật khẩu sai";
         },
         minLength(min) {
             return function (value) {
@@ -34,7 +31,7 @@ $(document).ready(function () {
             return reg.test(value) ? undefined : 'Vui lòng nhập đúng email';
         },
 
-        //Toàn bộ là số
+        //toàn bộ là số
         number(value) {
             const arrValue = value.split('');
 
@@ -49,6 +46,20 @@ $(document).ready(function () {
             return value === password
                 ? undefined
                 : `Mật khẩu sai hoặc chưa nhập mật khẩu`;
+        },
+        //mật khẩu khớp với tài khoản
+        match(value) {
+            const emailValue = $('.form__main input[name="email"]').val();
+            const emailMatch = users.find(user => user.email == String(emailValue));
+            return emailMatch?.password == value ? undefined : "Mật khẩu sai";
+        },
+        oldPassword(value) {
+            console.log(value, oldPassword);
+            return value === oldPassword ? undefined : `Mật khẩu sai`;
+        },
+        newPassword(value) {
+            console.log(value, oldPassword);
+            return value !== oldPassword ? undefined : `Vui lòng không nhập trùng mật khẩu cũ`;
         }
     }
 
@@ -66,21 +77,37 @@ $(document).ready(function () {
                     rulesFunc[input.name] = ['required', 'number', 'minLength:10'];
                     break;
                 case "email":
-                    if ($(form).attr('name') === 'reg')
-                        rulesFunc[input.name] = ['required', 'email', 'emailExist'];
-                    else if ($(form).attr('name') === 'login')
-                        rulesFunc[input.name] = ['required', 'email', 'emailNotExist'];
-                    else
-                        rulesFunc[input.name] = ['required', 'email'];
+                    switch ($(form).attr('name')) {
+                        case "reg":
+                            rulesFunc[input.name] = ['required', 'email', 'emailExist'];
+                            break;
+                        case "login":
+                            rulesFunc[input.name] = ['required', 'email', 'emailNotExist'];
+                            break;
+                        default:
+                            return new Error('Invalid');
+                    }
                     break;
                 case "password":
-                    if ($(form).attr('name') === 'reg')
-                        rulesFunc[input.name] = ['required', 'minLength:8'];
-                    else if ($(form).attr('name') === 'login')
-                        rulesFunc[input.name] = ['required', 'minLength:8', 'match'];
+                    switch ($(form).attr('name')) {
+                        case "reg":
+                            rulesFunc[input.name] = ['required', 'minLength:8'];
+                            break;
+                        case "login":
+                            rulesFunc[input.name] = ['required', 'minLength:8', 'match'];
+                            break;
+                        case "changePassword":
+                            rulesFunc[input.name] = ['required', 'minLength:8', 'newPassword'];
+                            break;
+                        default:
+                            return new Error('Invalid');
+                    }
                     break;
                 case "confirm_password":
                     rulesFunc[input.name] = ['required', `confirm`, 'minLength:8'];
+                    break;
+                case "oldPassword":
+                    rulesFunc[input.name] = ['required', 'oldPassword'];
                     break;
                 default:
                     return new Error('Invalid');
@@ -120,6 +147,7 @@ $(document).ready(function () {
 
             $(erorrElement).text(errorMessage || '');
             $(parentElement).toggleClass('form__group--erorr', !!errorMessage);
+            $(parentElement).toggleClass('form__group--suscess', !errorMessage);
             return !errorMessage;
         }
         function clearError(e) {
@@ -138,14 +166,36 @@ $(document).ready(function () {
                 isError = !isValid ? true : false;
             });
             if (!isError) {
-                if (e.target.name === 'reg') {
-                    alerts(true, "Đăng ký thành công");
-                }
-                else if (e.target.name === 'login') {
-                    alerts(true, "Đăng nhập thành công");
+                switch (e.target.name) {
+                    case 'reg':
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Đăng ký thành công',
+                            timer: 2000
+                        })
+                        break;
+                    case 'login':
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Đăng nhập thành công',
+                            timer: 2000
+                        })
+                        break;
+                    case 'changePassword':
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Đổi mật khẩu thành công',
+                            timer: 2000
+                        })
+                        break;
                 }
                 return true;
             }
+            else
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Thông tin sai !',
+                });
             return false;
         })
     }

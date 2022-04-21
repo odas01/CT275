@@ -17,7 +17,7 @@ include '../array.php';
 
     <!-- css -->
     <link rel="stylesheet" href="../asset/css/style.css">
-    <link rel="stylesheet" href="../asset/css/signup.css">
+    <link rel="stylesheet" href="../asset/css/login.css">
 
     <!-- font family -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,8 +26,12 @@ include '../array.php';
 
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- sweetalert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.min.css">
     <title>Computers</title>
 </head>
+
 <body>
 
     <div class="app">
@@ -36,8 +40,7 @@ include '../array.php';
                 <img src="../asset/img/navbar/logo.png" alt="">
             </a>
             <div class="form">
-                <?php
-                if (!empty($_GET) && ($_GET['action'] == 'reg')) {
+                <?php if (!empty($_GET) && $_GET['action'] == 'reg') {
                     if (isset($_POST['username']) && isset($_POST['phone']) && isset($_POST['password']) && isset($_POST['email'])) {
                         $query = "INSERT INTO `user` (`id`, `fullname`, `phone`, `password`, `email`) VALUES (NULL, '{$_POST['username']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['email']}');";
                         $result = mysqli_query($conn, $query);
@@ -46,7 +49,7 @@ include '../array.php';
                     } else {
                 ?>
                         <form action="./login.php?action=reg" class="form__main" method="post" name="reg">
-                            <h2 class="form__title">Đăng ký</h2>
+                            <h2 class="form__title">ĐĂNG KÝ</h2>
                             <div class="form__group">
                                 <input type="text" name="username" placeholder="Họ tên">
                                 <span class="form__message"></span>
@@ -72,9 +75,39 @@ include '../array.php';
                                 <a href="./login.php">Đăng nhập</a>
                             </div>
 
-                            <button name="submit" class="btn btn-primary ms-3 mt-3"> Đăng ký</button>
-                            <button class="btn btn-secondary mt-3">Trở về</button>
+                            <button name="submit" class="btn btn-primary ms-auto me-auto mt-3"> Đăng ký</button>
                         </form>
+                    <?php
+                    }
+                } else if (!empty($_GET) && $_GET['action'] == 'changePassword') {
+                    if (isset($_POST['oldPassword']) && isset($_POST['password']) && isset($_POST['confirm_password'])) {
+                        $query = "UPDATE `user` SET `password` = '{$_POST['password']}' WHERE `id` = {$_SESSION['user']['id']};";
+                        mysqli_query($conn, $query);
+                        $_SESSION['user']['password'] = $_POST['password'];
+                        sleep(1);
+                        header("Location: ./index.php");
+                    } else {
+                    ?>
+                        <form action="./login.php?action=changePassword" class="form__main" method="post" name="changePassword">
+                            <h2 class="form__title">ĐỔI MẬT KHẨU</h2>
+                            <div class="form__group">
+                                <input type="password" name="oldPassword" placeholder="Mật khẩu cũ">
+                                <span class="form__message"></span>
+                            </div>
+                            <div class="form__group">
+                                <input type="password" name="password" placeholder="Mật khẩu mới">
+                                <span class="form__message"></span>
+                            </div>
+                            <div class="form__group">
+                                <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu mới">
+                                <span class="form__message"></span>
+                            </div>
+
+                            <button name="submit" class="btn btn-primary ms-3 mt-3"> Đổi mật khẩu</button>
+                        </form>
+                        <script>
+                            const oldPassword = "<?= $_SESSION['user']['password'] ?>";
+                        </script>
                     <?php
                     }
                 } else {
@@ -84,7 +117,7 @@ include '../array.php';
                     } else {
                     ?>
                         <form action="./login.php?action=login" class="form__main" method="post" name="login">
-                            <h2 class="form__title">Đăng nhập</h2>
+                            <h2 class="form__title">ĐĂNG NHẬP</h2>
                             <div class="form__group">
                                 <input type="email" name="email" placeholder="Email">
                                 <span class="form__message"></span>
@@ -99,11 +132,10 @@ include '../array.php';
                             </div>
 
                             <button name="submit" class="btn btn-primary ms-3 mt-3"> Đăng nhập</button>
-                            <button class="btn btn-secondary mt-3">Trở về</button>
                         </form>
                 <?php
                     }
-                }   ?>
+                } ?>
 
                 <div class="form__overlay"></div>
             </div>
@@ -117,6 +149,9 @@ include '../array.php';
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <script type="module" src="../asset/js/form.js"></script>
 

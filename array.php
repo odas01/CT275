@@ -14,7 +14,8 @@
                         },";
     }
 
-    echo 'const products = [' . $string . '];';
+    echo 'const products = [' . $string . '];
+    ';
 
     
     //phone
