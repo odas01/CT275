@@ -58,16 +58,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="footer__wrap col-lg-4 col-sm-12 col-12">
-                <h5 class="footer__title">
-                    Đăng ký nhận khuyến mãi
-                </h5>
-                <div class="footer__content">
-                    <input type="text" placeholder="@gmail.com" />
-                    <button>Đăng ký</button>
-                </div>
-            </div> -->
         </div>
         <div class="footer__license">
             <p>© Bản quyền thuộc về <b> lntthanh3317</b></p>

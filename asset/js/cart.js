@@ -175,34 +175,34 @@ $(document).ready(function () {
     const cartUser = $('.cart__user');
     const cartUserWrap = $('.cart__user-wrap');
     const inputs = $('.cart__user-item').children();
-    formUser.submit(function (e) {
-        e.preventDefault();
-        let isErrorForm = false;
-        inputs.each((index, input) => {
-            const valid = validate({ target: input });
+    // formUser.submit(function (e) {
+        // e.preventDefault();
+        // let isErrorForm = false;
+        // inputs.each((index, input) => {
+        //     const valid = validate({ target: input });
 
-            if (valid) {
-                isErrorForm = true;
-            }
-        });
-        if (!isErrorForm) {
-            Swal.fire({
-                icon: 'success',
-                text: 'Đơn hàng đã được khởi tạo thành công',
-                timer: 1500
-            })
-            // alerts(true, 'Đơn hàng đã được khởi tạo thành công');
-            setTimeout(() => {
-                formUser[0].submit();
-            }, 1600);
-        } else {
-            Swal.fire({
-                icon: 'error',
-                text: 'vui lòng điền đầy đủ thông tin',
-                timer: 1500
-            })
-        }
-    });
+        //     if (valid) {
+        //         isErrorForm = true;
+        //     }
+        // });
+        // if (!isErrorForm) {
+        //     Swal.fire({
+        //         icon: 'success',
+        //         text: 'Đơn hàng đã được khởi tạo thành công',
+        //         timer: 1500
+        //     })
+        //     // alerts(true, 'Đơn hàng đã được khởi tạo thành công');
+        //     setTimeout(() => {
+        //         formUser[0].submit();
+        //     }, 1600);
+        // } else {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         text: 'vui lòng điền đầy đủ thông tin',
+        //         timer: 1500
+        //     })
+        // }
+    // });
 
     //tooltips
     const tooltips = document.querySelectorAll(".cart__detail-delete");

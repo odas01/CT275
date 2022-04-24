@@ -240,9 +240,22 @@
     margin-top: 16px;
 }
 
-.cart__user-item input.cart__user-message,
-.cart__user-item textarea.cart__user-message {
-    border-color: red;
+.cart__user-item input.form__group--erorr,
+.cart__user-item textarea.form__group--erorr {
+    border-color: #d63031;
+}
+
+.cart__user-item input.form__group--suscess,
+.cart__user-item textarea.form__group--suscess {
+    border-color: #2ecc71;
+}
+
+.form__message {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #d63031;
+    margin: 6px 6px 0;
 }
 
 .cart__user-btn {

@@ -47,6 +47,7 @@ if (isset($_GET['action'])) {
             break;
         case 'submit':
             if (!empty($_POST['quantity'])) {
+                
                 $products = mysqli_query($conn, "SELECT * FROM `product` WHERE `id` IN (" . implode(",", array_keys($_SESSION['cart'])) . ")");
                 $total = 0;
                 $array = [];
@@ -110,6 +111,7 @@ $result = mysqli_query(
     <!-- css -->
     <link rel="stylesheet" href="../asset/css/style.css" />
     <link rel="stylesheet" href="../asset/css/cart.css" />
+    <link rel="stylesheet" href="../asset/css/login.css" />
 
     <!-- font family -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -130,7 +132,7 @@ $result = mysqli_query(
             <?php include "../partials/breadcrumb.php"; ?>
 
             <div class="main">
-                <form action="cart.php?action=submit" method="post" class="cart">
+                <form action="cart.php?action=submit" method="post" class="cart form__main" name="cart">
                     <div class="row">
                         <div class="col-lg-8 cart__left">
                             <h4 class="cart__title">GIỎ HÀNG</h4>
@@ -197,7 +199,7 @@ $result = mysqli_query(
                                         } ?>
                                     </div>
                                 </div>
-                                <a href="./index.php" class="cart__empty-return">
+                                <a href="./home.php" class="cart__empty-return">
                                     <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" class="" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
                                     </svg>
@@ -210,7 +212,7 @@ $result = mysqli_query(
                                     <span class="cart__empty-message">Bạn chưa mua sản phẩm nào</span>
                                 </div>
                             <?php } ?>
-                            <a href="./index.php" class="cart__empty-return">
+                            <a href="./home.php" class="cart__empty-return">
                                 <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" class="" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
                                 </svg>
@@ -261,22 +263,28 @@ $result = mysqli_query(
                         <div class="cart__user">
                             <div class="cart__user-wrap">
                                 <h4 class="cart__user-title">Địa chỉ đặt hàng</h4>
-                                <div class="cart__user-item">
-                                    <input type="text" name="name" placeholder="Họ và tên">
+                                
+                                <div class="cart__user-item form__group">
+                                    <input type="text" name="name" placeholder="Họ và tên" rule="required">
+                                    <span class="form__message"></span>
                                 </div>
-                                <div class="cart__user-item">
-                                    <input type="text" name="phone" placeholder="Số điện thoại">
+                                <div class="cart__user-item form__group ">
+                                    <input type="text" name="phone" placeholder="Số điện thoại"  rule="required|number|minLength:10">
+                                    <span class="form__message"></span>
                                 </div>
-                                <div class="cart__user-item">
-                                    <input name="address" type="text" placeholder="Tỉnh/Thành phố, Quận/Huyện, Phương/Xã">
+                                <div class="cart__user-item form__group">
+                                    <input name="address" type="text" placeholder="Tỉnh/Thành phố, Quận/Huyện, Phương/Xã"  rule="required|minLength:10">
+                                    <span class="form__message"></span>
                                 </div>
-                                <div class="cart__user-item">
+                                <div class="cart__user-item form__group">
                                     <textarea name="note" cols="30" rows="3" placeholder="Ghi chú"></textarea>
+                                    <span class="form__message"></span>
                                 </div>
                                 <div class="cart__user-btn">
                                     <span>TRỞ LẠI</span>
                                     <input type="submit" name="order-user" value="HOÀN THÀNH">
                                 </div>
+                                
                             </div>
                             <div class="cart__user-overlay"></div>
                         </div>
@@ -301,6 +309,7 @@ $result = mysqli_query(
 
     <script type="module" src="../asset/js/app.js"></script>
     <script type="module" src="../asset/js/cart.js"></script>
+    <script type="module" src="../asset/js/form.js"></script>
 
 </body>
 

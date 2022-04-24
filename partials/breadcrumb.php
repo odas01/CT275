@@ -10,6 +10,8 @@ switch (curPageName()) {
     case "contact.php":
         $breadcrumb = 'Liên hệ';
         break;
+    case "deliveryPolicy.php":
+        $breadcrumb = 'Chính sách giao hàng';
 }
 if (!empty($breadcrumb)) {
 ?>

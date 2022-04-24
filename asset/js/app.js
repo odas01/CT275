@@ -12,7 +12,7 @@ $(document).ready(function () {
                     .reduce((cur, item) => {
                         return (
                             cur +
-                            `<a href="detail.php?id=${item.id}" class="search__item">
+                            `<a href="detail.php?id=${item.id}" class="search__item d-flex align-items-center">
                             <img
                             src=".${item.img}"
                             alt=""
@@ -21,7 +21,7 @@ $(document).ready(function () {
                         </a>`
                         );
                     }, '') ||
-                `<div class="search__empty">
+                `<div class="search__empty flex-column d-flex justify-content-center align-items-center">
                             <img src="../asset/img/cart/nocartt.png" alt="">
                             <span>Không có sản phẩm phù hợp</span>
                         </div>`;
@@ -41,7 +41,7 @@ $(document).ready(function () {
     window.addEventListener('scroll', () => {
         scrollToTop.classList.toggle('fadee', window.scrollY > 100);
     });
-    
+
     //dropdown
     const menuMobile = $('.menu__mobile');
     const dropdown = $('.dropdown');
@@ -66,6 +66,16 @@ $(document).ready(function () {
     //tooltips
     document.querySelectorAll(".support__item-img").forEach((tooltip) => new bootstrap.Tooltip(tooltip));
 
+    //miniCart
+    let bool = false;
+    $('.miniCart__icon').click(function (e) {
+        e.stopPropagation();
+        if(!bool)
+            $('.miniCart').css('animation', 'showLeft 0.7s ease forwards');
+        else   
+            $('.miniCart').css('animation', 'hideRight 0.6s ease forwards');
+        bool=!bool;
+    });
 });
 
 

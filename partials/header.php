@@ -5,7 +5,7 @@ if (!isset($_SESSION['user'])) {
         'name' => '',
         'password' => ''
     );
-}   
+}
 
 if (!empty($_GET['action'])) {
     switch ($_GET['action']) {
@@ -16,7 +16,7 @@ if (!empty($_GET['action'])) {
             $_SESSION['user']['name'] = $fullname['fullname'];
             $_SESSION['user']['id'] = $fullname['id'];
             $_SESSION['user']['password'] = $fullname['password'];
-            
+
 
             $result = mysqli_query($conn, "SELECT `product_id`, `quantity`
             FROM `cart`
@@ -29,12 +29,12 @@ if (!empty($_GET['action'])) {
             }
             $_SESSION['cart'] = $carts;
 
-            header('Location: ./index.php');
+            header('Location: ./home.php');
             break;
         case 'logout':
             unset($_SESSION['user']);
             unset($_SESSION['cart']);
-            header('Location: ./index.php');
+            header('Location: ./home.php');
             break;
     }
 }
@@ -49,17 +49,17 @@ if (!empty($_GET['action'])) {
                 </div>
 
                 <div class="dropdown">
-                    <div class="dropdown__overlay"></div>
-                    <div class="dropdown__body">
-                        <div class="dropdown__list">
-                            <div class="dropdown__top">
+                    <div class="dropdown__overlay w-100 h-100"></div>
+                    <div class="dropdown__body h-100">
+                        <div class="dropdown__list d-flex justify-content-between flex-column h-100">
+                            <div class="dropdown__top d-flex align-items-center">
                                 <?php if (!empty($_SESSION['user']['name'])) { ?>
                                     <div class="dropdown__user">
-                                        <div class="dropdown__user-infor">
+                                        <div class="dropdown__user-infor d-flex align-items-center">
                                             <img src="../asset/img/navbar/user_mobile2.png" alt="">
                                             <span><?= $_SESSION['user']['name'] ?></span>
                                         </div>
-                                        <a href="./index.php?action=logout" class="dropdown__user-logout">
+                                        <a href="./home.php?action=logout" class="dropdown__user-logout">
                                             Đăng xuất
                                         </a>
                                     </div>
@@ -68,10 +68,10 @@ if (!empty($_GET['action'])) {
                                     <a href="./login.php">Đăng nhập</a>
                                 <?php } ?>
                             </div>
-                            <div class="dropdown__main">
-                                <a href="./index.php">TRANG CHỦ</a>
-                                <a href="./index.php">LIÊN HỆ</a>
-                                <a href="./index.php">HỖ TRỢ</a>
+                            <div class="dropdown__main d-flex flex-column">
+                                <a href="./home.php">Trang chủ</a>
+                                <a href="./contact.php">Liên hệ</a>
+                                <a href="./deliveryPolicy.php">Chính sách giao hàng</a>
                             </div>
                             <div class="dropdown__bottom">
                                 <p>Số điện thoại: <span>0329881171</span></p>
@@ -82,19 +82,20 @@ if (!empty($_GET['action'])) {
                 </div>
             </div>
             <div class="logo">
-                <a href="index.php">
-                    <img src="../asset/img/navbar/logo.png" alt="" />
+                <a href="home.php" class=" w-100">
+                    <img src="../asset/img/navbar/logo.png" alt=""  class=" w-100"/>
                 </a>
             </div>
             <div class="search">
-                <div class="search__wrap">
-                    <input type="text" placeholder="Nhập tên sản phẩm cần tìm..." />
-                    <div class="search__btn">
+                <div class="search__wrap w-100 h-100 d-flex align-items-center">
+                    <input class="h-100" type="text" placeholder="Nhập tên sản phẩm cần tìm..." />
+                    <div class="search__btn d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <div class="search__list"></div>
+                    <div class="search__list w-100"></div>
                 </div>
             </div>
+
             <a href="<?= isset($_SESSION['cart']) ? "cart.php" : "login.php" ?>" class="header__cart">
                 <div class="header__cart-icon">
                     <img src="../asset/img/cart/cart.png" alt="" />
@@ -112,7 +113,7 @@ if (!empty($_GET['action'])) {
                         </div>
                         <span><?= $_SESSION['user']['name'] ?></span>
                         <ul class="header__user-menu">
-                            <li class="header__user-item"><a href="./index.php?action=logout">Đăng xuất</a></li>
+                            <li class="header__user-item"><a href="./home.php?action=logout">Đăng xuất</a></li>
                             <li class="header__user-item">
 
                                 <a href="./login.php?action=changePassword">

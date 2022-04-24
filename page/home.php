@@ -41,8 +41,9 @@ include '../function.php';
     <div class="app">
         <?php include "../partials/header.php"; ?>
         <div class="container">
-            <!-- <?php include "../partials/category.php"; ?> -->
-            <?php include "../partials/breadcrumb.php"; ?>
+            <?php include "../partials/breadcrumb.php"; ?>  
+            <?php include "../partials/category.php"; ?>  
+            
             <?php include "../partials/slider.php"; ?>
 
             <div class="main">
@@ -210,6 +211,7 @@ include '../function.php';
 
             <?php include "../partials/brand.php"; ?>
             <?php include "../partials/support.php"; ?>
+        
         </div>
 
         <?php include "../partials/footer.php"; ?>

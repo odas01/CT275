@@ -2,7 +2,17 @@
     margin-top: 0;
 }
 
-.form__main {
+.main.login {
+    position: relative;
+    height: 100vh;
+    background-image: url("../img/sign.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+
+
+.login .form__main {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -74,24 +84,14 @@
 button {
     float: right;
 }
-
-.main {
-    position: relative;
-    height: 100vh;
-    background-image: url("../img/sign.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 0;
-}
-
-.logo {
+.login .logo {
     position: absolute;
     left: 50px;
     top: 20px;
     width: 180px;
 }
 
-.logo img {
+.login .logo img {
     width: 100%;
     object-fit: contain;
 }

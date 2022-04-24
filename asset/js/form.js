@@ -54,11 +54,9 @@ $(document).ready(function () {
             return emailMatch?.password == value ? undefined : "Mật khẩu sai";
         },
         oldPassword(value) {
-            console.log(value, oldPassword);
             return value === oldPassword ? undefined : `Mật khẩu sai`;
         },
         newPassword(value) {
-            console.log(value, oldPassword);
             return value !== oldPassword ? undefined : `Vui lòng không nhập trùng mật khẩu cũ`;
         }
     }
@@ -67,68 +65,26 @@ $(document).ready(function () {
     const rulesFunc = {};
     const form = $('.form__main');
     if (form) {
-        const inputs = $('.form__main input');
+        const inputs = $('[name][rule]');
+        console.log(inputs);
         Array.from(inputs).forEach(input => {
-            switch (input.name) {
-                case "username":
-                    rulesFunc[input.name] = ['required', 'maxLength:16'];
-                    break;
-                case "phone":
-                    rulesFunc[input.name] = ['required', 'number', 'minLength:10'];
-                    break;
-                case "email":
-                    switch ($(form).attr('name')) {
-                        case "reg":
-                            rulesFunc[input.name] = ['required', 'email', 'emailExist'];
-                            break;
-                        case "login":
-                            rulesFunc[input.name] = ['required', 'email', 'emailNotExist'];
-                            break;
-                        default:
-                            return new Error('Invalid');
-                    }
-                    break;
-                case "password":
-                    switch ($(form).attr('name')) {
-                        case "reg":
-                            rulesFunc[input.name] = ['required', 'minLength:8'];
-                            break;
-                        case "login":
-                            rulesFunc[input.name] = ['required', 'minLength:8', 'match'];
-                            break;
-                        case "changePassword":
-                            rulesFunc[input.name] = ['required', 'minLength:8', 'newPassword'];
-                            break;
-                        default:
-                            return new Error('Invalid');
-                    }
-                    break;
-                case "confirm_password":
-                    rulesFunc[input.name] = ['required', `confirm`, 'minLength:8'];
-                    break;
-                case "oldPassword":
-                    rulesFunc[input.name] = ['required', 'oldPassword'];
-                    break;
-                default:
-                    return new Error('Invalid');
-            }
+            const rules = input.getAttribute('rule');
+            rulesFunc[input.name] = rules.split('|');
             rulesFunc[input.name].forEach(rule => {
                 let rulesFuncArray = validatorRules[rule];
                 const ruleHasValue = rule.includes(':');
+
                 if (ruleHasValue) {
                     const ruleInfo = rule.split(':');
                     rule = ruleInfo[0];
-                    if (ruleHasValue) {
+                    if (ruleHasValue) 
                         rulesFuncArray = validatorRules[rule](ruleInfo[1]);
-                    }
                 }
 
-                if (!Array.isArray(formRules[input.name])) {
+                if (!Array.isArray(formRules[input.name]))
                     formRules[input.name] = [rulesFuncArray];
-                }
-                else {
+                else
                     formRules[input.name].push(rulesFuncArray);
-                }
 
             })
             input.onblur = validate;
@@ -142,7 +98,8 @@ $(document).ready(function () {
                 if (errorMessage) break;
                 errorMessage = rule(e.target.value);
             }
-            const erorrElement = $(e.target).siblings();
+            const erorrElement = $(e.target).siblings('.form__message');
+            console.log(erorrElement);
             const parentElement = $(e.target).parent();
 
             $(erorrElement).text(errorMessage || '');
@@ -151,14 +108,15 @@ $(document).ready(function () {
             return !errorMessage;
         }
         function clearError(e) {
-            const erorrElement = $(e.target).siblings();
+            const erorrElement = $(e.target).siblings('.form__message');
             const parentElement = $(e.target).parent();
             $(erorrElement).text('')
             $(parentElement).removeClass('form__group--erorr');
         }
 
         form.submit(e => {
-            const inputs = $('.form__main input');
+            const inputs = $('[name][rule]');
+            console.log(inputs);
             let isError = false;
             Array.from(inputs).forEach(input => {
                 const isValid = validate({ target: input })
@@ -188,13 +146,20 @@ $(document).ready(function () {
                             timer: 2000
                         })
                         break;
+                    case 'contact':
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Gửi form thành công',
+                            timer: 2000
+                        })
+                        break;
                 }
                 return true;
             }
             else
                 Swal.fire({
                     icon: 'error',
-                    text: 'Thông tin sai !',
+                    text: 'Thông tin sai!',
                 });
             return false;
         })

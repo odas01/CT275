@@ -243,6 +243,10 @@
         padding: 12px 0 16px;
     }
 
+    .slider{
+        padding-top: 8px;
+    }
+
     .slide__right{
         display: none !important;
     }

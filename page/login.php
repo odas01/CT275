@@ -35,8 +35,8 @@ include '../array.php';
 <body>
 
     <div class="app">
-        <div class="main">
-            <a href="./index.php" class="logo">
+        <div class="main login">
+            <a href="./home.php" class="logo">
                 <img src="../asset/img/navbar/logo.png" alt="">
             </a>
             <div class="form">
@@ -51,23 +51,23 @@ include '../array.php';
                         <form action="./login.php?action=reg" class="form__main" method="post" name="reg">
                             <h2 class="form__title">ĐĂNG KÝ</h2>
                             <div class="form__group">
-                                <input type="text" name="username" placeholder="Họ tên">
+                                <input type="text" name="username" placeholder="Họ tên" rule="required|maxLength:16">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__group">
-                                <input type="text" name="phone" placeholder="Số điện thoại">
+                                <input type="text" name="phone" placeholder="Số điện thoại" rule="required|number|minLength:10" >
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__group">
-                                <input type="email" name="email" placeholder="Email">
+                                <input type="email" name="email" placeholder="Email" rule="required|email|emailExist">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__group">
-                                <input type="password" name="password" placeholder="Mật khẩu">
+                                <input type="password" name="password" placeholder="Mật khẩu" rule="required|minLength:8">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__group">
-                                <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu">
+                                <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" rule="required|minLength:8|confirm">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__signin">
@@ -85,21 +85,21 @@ include '../array.php';
                         mysqli_query($conn, $query);
                         $_SESSION['user']['password'] = $_POST['password'];
                         sleep(1);
-                        header("Location: ./index.php");
+                        header("Location: ./home.php");
                     } else {
                     ?>
                         <form action="./login.php?action=changePassword" class="form__main" method="post" name="changePassword">
                             <h2 class="form__title">ĐỔI MẬT KHẨU</h2>
                             <div class="form__group">
-                                <input type="password" name="oldPassword" placeholder="Mật khẩu cũ">
+                                <input type="password" name="oldPassword" placeholder="Mật khẩu cũ" rule="required|oldPassword">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__group">
-                                <input type="password" name="password" placeholder="Mật khẩu mới">
+                                <input type="password" name="password" placeholder="Mật khẩu mới" rule="required|minLength:8|newPassword">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__group">
-                                <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu mới">
+                                <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu mới" rule="required|minLength:8|confirm">
                                 <span class="form__message"></span>
                             </div>
 
@@ -113,17 +113,17 @@ include '../array.php';
                 } else {
                     if (isset($_POST['email']) && isset($_POST['password'])) {
                         sleep(1);
-                        header("Location: ./index.php?action=login&&email={$_POST['email']}");
+                        header("Location: ./home.php?action=login&&email={$_POST['email']}");
                     } else {
                     ?>
                         <form action="./login.php?action=login" class="form__main" method="post" name="login">
                             <h2 class="form__title">ĐĂNG NHẬP</h2>
                             <div class="form__group">
-                                <input type="email" name="email" placeholder="Email">
+                                <input type="email" name="email" placeholder="Email" rule="required|email|emailNotExist">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__group">
-                                <input type="password" name="password" placeholder="Mật khẩu">
+                                <input type="password" name="password" placeholder="Mật khẩu" rule="required|minLength:8|match">
                                 <span class="form__message"></span>
                             </div>
                             <div class="form__signin">
