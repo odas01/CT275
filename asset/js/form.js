@@ -66,7 +66,6 @@ $(document).ready(function () {
     const form = $('.form__main');
     if (form) {
         const inputs = $('[name][rule]');
-        console.log(inputs);
         Array.from(inputs).forEach(input => {
             const rules = input.getAttribute('rule');
             rulesFunc[input.name] = rules.split('|');
@@ -99,7 +98,6 @@ $(document).ready(function () {
                 errorMessage = rule(e.target.value);
             }
             const erorrElement = $(e.target).siblings('.form__message');
-            console.log(erorrElement);
             const parentElement = $(e.target).parent();
 
             $(erorrElement).text(errorMessage || '');
@@ -116,15 +114,16 @@ $(document).ready(function () {
 
         form.submit(e => {
             const inputs = $('[name][rule]');
-            console.log(inputs);
             let isError = false;
             Array.from(inputs).forEach(input => {
                 const isValid = validate({ target: input })
 
                 isError = !isValid ? true : false;
             });
+            const name = $(form).attr('name');
+            console.log(name);
             if (!isError) {
-                switch (e.target.name) {
+                switch (name) {
                     case 'reg':
                         Swal.fire({
                             icon: 'success',
@@ -152,6 +151,16 @@ $(document).ready(function () {
                             text: 'Gửi form thành công',
                             timer: 2000
                         })
+                        break;
+                    case 'cart':
+                        Swal.fire({
+                            text: 'Cảm ơn vì đã mua hàng',
+                            imageUrl: '../asset/img/cart/thank.png',
+                            imageWidth: 230,
+                            imageHeight: 200,
+                            imageAlt: 'Custom image',
+                            timer:2000
+                          })
                         break;
                 }
                 return true;

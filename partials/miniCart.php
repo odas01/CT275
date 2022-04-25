@@ -15,7 +15,6 @@
 
                 while ($row = mysqli_fetch_array($result)) {
                 ?>
-
                     <div class="miniCart__item  d-flex align-items-center">
                         <div class="miniCart__item-img">
                             <img src=".<?= $row['img'] ?>" class="w-100" alt="">

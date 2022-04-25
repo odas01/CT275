@@ -9,14 +9,14 @@ $userID = $_SESSION['user']['id'];
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
+        // them san pham
         case 'add':
             $newPd = array_keys($_POST['quantity'])[0];
             $arrCart = array_keys($_SESSION['cart']);
-            
+
             if (!in_array($newPd, $arrCart)) {
                 $result = mysqli_query($conn, "SELECT  `price` FROM `product` WHERE `id` = {$newPd}");
                 $price = mysqli_fetch_array($result);
-
                 mysqli_query(
                     $conn,
                     "INSERT INTO `cart` (`id`, `user_id`, `product_id`, `price`, `quantity`) VALUES
@@ -26,7 +26,6 @@ if (isset($_GET['action'])) {
                 update_cart();
             } else {
                 update_cart();
-
                 mysqli_query(
                     $conn,
                     "UPDATE `cart` SET `quantity` = {$_SESSION['cart'][$newPd]}  WHERE `cart`.`id` = (
@@ -36,18 +35,20 @@ if (isset($_GET['action'])) {
             }
             header('Location: ./cart.php');
             break;
+
+        // xoa san pham
         case 'delete':
             unset($_SESSION['cart'][$_GET['id']]);
-            
             mysqli_query($conn, "delete from `cart` where `product_id`={$_GET['id']} and `user_id`={$userID} ;");
-
-            if (count($_SESSION['cart']) == 0)
-                $_SESSION['cart'] = array();
+            if (count($_SESSION['cart']) == 0) {
+                $_SESSION['cart'] = [];
+            }
             header('Location: ./cart.php');
             break;
+
+        // mua hang
         case 'submit':
             if (!empty($_POST['quantity'])) {
-                
                 $products = mysqli_query($conn, "SELECT * FROM `product` WHERE `id` IN (" . implode(",", array_keys($_SESSION['cart'])) . ")");
                 $total = 0;
                 $array = [];
@@ -60,11 +61,9 @@ if (isset($_GET['action'])) {
                 //order
                 mysqli_query(
                     $conn,
-                    "INSERT INTO `order` (`id`,`user_id`, `name`, `address`, `phone`, `total`, `note`, `ship`, `code`, `order_date`) VALUES 
+                    "INSERT INTO `order` (`id`,`user_id`, `name`, `address`, `phone`, `total`, `note`, `ship`, `code`) VALUES 
                     (NULL, {$userID}, '{$_POST['name']}', '{$_POST['address']}', '{$_POST['phone']}', '{$total}', '{$_POST['note']}'
-                    ,'{$_POST['shipping']}', '{$_POST['code']}', '" .
-                        date('Y-m-d H:i:s') .
-                        "')"
+                    ,'{$_POST['shipping']}', '{$_POST['code']}')"
                 );
 
                 //order detail
@@ -79,7 +78,8 @@ if (isset($_GET['action'])) {
 
                 //delete cart
                 mysqli_query($conn, "delete from `cart` where `user_id`={$userID} ;");
-                $_SESSION['cart'] = array();
+                $_SESSION['cart'] = [];
+                sleep(2);
                 header('Location: ./cart.php');
             }
             break;
@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
     ob_end_flush();
 }
 
-//render sản phẩm trong SESSION=
+//render sản phẩm trên sql
 $result = mysqli_query(
     $conn,
     "SELECT *

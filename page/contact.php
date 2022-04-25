@@ -5,15 +5,13 @@ include '../connect.php';
 include '../array.php';
 include '../function.php';
 
-
-
-if(!empty($_GET) && $_GET['action'] == 'submit'){
-   $query = "INSERT INTO `contact` (`id`, `name`, `phone`, `email`, `title`, `description`) 
+if (!empty($_GET) && $_GET['action'] == 'submit') {
+    $query = "INSERT INTO `contact` (`id`, `name`, `phone`, `email`, `title`, `description`) 
    VALUES (NULL, '{$_POST['name']}', '{$_POST['phone']}', '{$_POST['email']}', '{$_POST['title']}', '{$_POST['des']}');";
-   mysqli_query($conn, $query);
-   header('Location: ./contact.php');
+    mysqli_query($conn, $query);
+    sleep(1);
+    header('Location: ./contact.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +54,6 @@ if(!empty($_GET) && $_GET['action'] == 'submit'){
             <div class="main">
                 <div class="row">
                     <div class="col-lg-5 col-sm-5">
-                        <h3>Liên hệ</h3>
                         <form class="form__main" action="contact.php?action=submit" method="post" name="contact">
                             <div class="form__group mb-3">
                                 <label for="name" class="form_label">Họ tên</label>
@@ -80,7 +77,7 @@ if(!empty($_GET) && $_GET['action'] == 'submit'){
                             </div>
                             <div class="form__group mb-3">
                                 <label for="des" class="form_label">Nội dung</label>
-                                <textarea class="d-block mt-2" type="text" name="des" cols="30" rows="4" rule="required"></textarea>
+                                <textarea class="d-block mt-2" type="text" name="des" cols="30" rows="4"></textarea>
                                 <span class="form__message"></span>
                             </div>
                             <button class="btn" type="submit">Submit</button>
@@ -98,7 +95,8 @@ if(!empty($_GET) && $_GET['action'] == 'submit'){
                         </div>
                         <div class="map">
                             <iframe class="w-100" 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.841518408634!2d105.76842661461575!3d10.029933692830687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0895a51d60719%3A0x9d76b0035f6d53d0!2zxJDhuqFpIGjhu41jIEPhuqduIFRoxqE!5e0!3m2!1svi!2s!4v1650553658210!5m2!1svi!2s" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.841518408634!2d105.76842661461575!3d10.029933692830687!2m3!1f0!2f0!3f0!
+                            3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0895a51d60719%3A0x9d76b0035f6d53d0!2zxJDhuqFpIGjhu41jIEPhuqduIFRoxqE!5e0!3m2!1svi!2s!4v1650553658210!5m2!1svi!2s" 
                             width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
@@ -115,20 +113,14 @@ if(!empty($_GET) && $_GET['action'] == 'submit'){
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <script type="module" src="../asset/js/app.js"></script>
     <script type="module" src="../asset/js/form.js"></script>
-
-    <script>
-        document.querySelectorAll(".product__item").forEach((tooltip) => {
-            new bootstrap.Tooltip(tooltip, {
-                html: true
-            });
-        });
-    </script>
-    
 </body>
 
 </html>

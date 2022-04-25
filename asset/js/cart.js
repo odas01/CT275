@@ -83,31 +83,7 @@ $(document).ready(function () {
 
         messCode.classList.toggle('cart__total-message--error', !code);
     }
-
-    function validate(e) {
-        const input = e.target;
-        let valid = true;
-        switch ($(input).attr('name')) {
-            case 'name':
-                valid = $(input).val() === '' || $(input).val().length < 10;
-                break;
-            case 'phone':
-                let regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-                let phone = $(input).val();
-                valid = !regex.test(phone);
-                break;
-            case 'address':
-                valid = $(input).val() === '' || $(input).val().length < 10;
-                break;
-            case 'note':
-                valid = $(input).val() === '' || $(input).val().length < 2;
-                break;
-
-        }
-        $(input).toggleClass('cart__user-message', valid);
-        return valid;
-    }
-
+    
     // HANDLE EVENT
     // thay đổi số lượng
     Array.from(productItems).forEach((productItem) => {
@@ -146,9 +122,9 @@ $(document).ready(function () {
     // mở form
     $('.cart__total-buy').click(function (e) {
         cartUser.css('display', 'block');
-        inputs.each((index, input) => {
-            $(input).keyup(validate);
-        });
+        // inputs.each((index, input) => {
+        //     $(input).keyup(validate);
+        // });
 
     });
 
@@ -171,38 +147,9 @@ $(document).ready(function () {
     })
 
     // form
-    const formUser = $('.cart');
     const cartUser = $('.cart__user');
     const cartUserWrap = $('.cart__user-wrap');
     const inputs = $('.cart__user-item').children();
-    // formUser.submit(function (e) {
-        // e.preventDefault();
-        // let isErrorForm = false;
-        // inputs.each((index, input) => {
-        //     const valid = validate({ target: input });
-
-        //     if (valid) {
-        //         isErrorForm = true;
-        //     }
-        // });
-        // if (!isErrorForm) {
-        //     Swal.fire({
-        //         icon: 'success',
-        //         text: 'Đơn hàng đã được khởi tạo thành công',
-        //         timer: 1500
-        //     })
-        //     // alerts(true, 'Đơn hàng đã được khởi tạo thành công');
-        //     setTimeout(() => {
-        //         formUser[0].submit();
-        //     }, 1600);
-        // } else {
-        //     Swal.fire({
-        //         icon: 'error',
-        //         text: 'vui lòng điền đầy đủ thông tin',
-        //         timer: 1500
-        //     })
-        // }
-    // });
 
     //tooltips
     const tooltips = document.querySelectorAll(".cart__detail-delete");

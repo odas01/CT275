@@ -28,12 +28,6 @@ p {
     --bs-gutter-x: 3rem !important;
 }
 
-h3 {
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 24px;
-}
-
 .form__group.form__group--erorr input {
     border-color: #d63031;
 }
@@ -51,11 +45,6 @@ h3 {
 }
 
 @media (min-width: 740px) and (max-width: 1023px) {
-    h3 {
-        font-size: 20px;
-        margin-bottom: 16px;
-    }
-
     h4{
         font-size: 14px !important;
     }
@@ -82,4 +71,21 @@ h3 {
 }
 
 /* mobile */
-@media (max-width: 739px) {}
+@media (max-width: 739px) {
+    .row div:nth-child(1){
+        order: 2;
+        margin-top: 12px;
+    }
+
+    .main{
+        padding-top: 0;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    .location{
+        margin: 8px 0 20px;
+    }
+}

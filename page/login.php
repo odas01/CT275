@@ -42,7 +42,8 @@ include '../array.php';
             <div class="form">
                 <?php if (!empty($_GET) && $_GET['action'] == 'reg') {
                     if (isset($_POST['username']) && isset($_POST['phone']) && isset($_POST['password']) && isset($_POST['email'])) {
-                        $query = "INSERT INTO `user` (`id`, `fullname`, `phone`, `password`, `email`) VALUES (NULL, '{$_POST['username']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['email']}');";
+                        $query = "INSERT INTO `user` (`id`, `fullname`, `phone`, `password`, `email`) 
+                        VALUES (NULL, '{$_POST['username']}', '{$_POST['phone']}', '{$_POST['password']}', '{$_POST['email']}');";
                         $result = mysqli_query($conn, $query);
                         sleep(1);
                         header("Location: ./login.php");
@@ -81,7 +82,7 @@ include '../array.php';
                     }
                 } else if (!empty($_GET) && $_GET['action'] == 'changePassword') {
                     if (isset($_POST['oldPassword']) && isset($_POST['password']) && isset($_POST['confirm_password'])) {
-                        $query = "UPDATE `user` SET `password` = '{$_POST['password']}' WHERE `id` = {$_SESSION['user']['id']};";
+                        $query = "UPDATE `user` SET `password` = '{$_POST['password']}', `update_at` = NULL WHERE `id` = {$_SESSION['user']['id']};";
                         mysqli_query($conn, $query);
                         $_SESSION['user']['password'] = $_POST['password'];
                         sleep(1);
@@ -147,14 +148,13 @@ include '../array.php';
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 
     <script type="module" src="../asset/js/form.js"></script>
-
 </body>
 
 </html>

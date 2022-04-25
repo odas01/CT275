@@ -448,6 +448,7 @@ body {
     width: 100%;
     background-color: var(--white-color);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    border-radius:3px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.1s linear;
@@ -906,7 +907,7 @@ body {
     }
 
     .search {
-        margin-left: 0px;
+        margin-left: 20px;
         height: 40px;
         width: 350px;
     }
@@ -938,7 +939,7 @@ body {
     }
 
     .header__cart {
-        margin-right: 20px;
+        margin-right: 28px;
     }
 
     .header__cart-icon {
@@ -1063,6 +1064,15 @@ body {
         margin-top: 60px;
     }
 
+    /* MINICART */
+    .miniCart{
+        display: none;
+    }
+
+    .miniCart__icon{
+        display: none;
+    }
+
     /* ALERT */
     .alerts {
         right: 10px;
@@ -1127,6 +1137,7 @@ body {
         margin-left: 0;
         margin-top: 12px;
         height: 38px;
+        
     }
 
     .header__cart {

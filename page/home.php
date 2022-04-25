@@ -227,18 +227,11 @@ include '../function.php';
         AOS.init();
     </script>
 
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
     <script type="module" src="../asset/js/app.js"></script>
 
-    <script>
-        document.querySelectorAll(".product__item").forEach((tooltip) => {
-            new bootstrap.Tooltip(tooltip, {
-                html: true
-            });
-        });
-    </script>
 </body>
 
 </html>

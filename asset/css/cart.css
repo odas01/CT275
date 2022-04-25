@@ -2,7 +2,7 @@
     margin-bottom: 20px;
     min-height: 650px;
     background-color: #fafafa;
-    padding: 12px 24px 12px;
+    padding: 20px 24px 12px;
 }
 
 .cart .cart__left {
@@ -457,6 +457,32 @@
     margin-right: 2px;
 }
 @media (min-width: 740px) and (max-width: 1023px) {
+    .cart .cart__left{
+        padding-bottom: 32px;
+    }
+
+    .cart__total{
+        padding: 0 12px;
+    }
+
+    .cart__title{
+        font-size: 20px;
+        padding-top: 0;
+    }
+
+    .cart__detail-title span{
+        font-size: 17px;
+    }
+
+    .cart__detail-title span:nth-child(2){
+        margin-right: 50px;
+    }
+
+    .cart__detail-img {
+        width:80px;
+        height:80px;
+    }
+
     .cart__detail-name{
         margin-left: 20px;
         margin-top: 12px;
@@ -465,6 +491,46 @@
 
     .cart__detail-body > *{
         font-size: 14px;
+    }
+
+    .cart__total-shipping label, .cart__total-code label,.cart__total-price--total span:first-child{
+        font-size: 17px;
+    }
+
+    .cart__total-code input{
+        font-size: 14px;
+    }
+    
+    .cart__total-buy{
+        width:50%;
+        margin: 0 auto;
+    }
+
+    .cart__empty-return{
+        display: none;
+    }
+
+    .cart__empty-message{
+        font-size: 24px;
+    }
+
+    .cart__user-title{
+        font-size: 22;
+        margin-bottom: 12px;
+    }
+
+    .cart__user-item input, .cart__user-item textarea{
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+
+    .cart__user-btn > *{
+        font-size: 14px !important;
+        height:38px;
+    }
+
+    .cart__user-btn > span{
+        line-height: 38px;
     }
 
 }

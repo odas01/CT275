@@ -5,7 +5,11 @@
 
 /* slider */
 .slider{
-    padding-top: 12px;
+    margin-top: 12px;
+}
+
+.slider img{
+    border-radius:4px;
 }
 
 .slider .carousel-item img {
@@ -14,6 +18,7 @@
 
 .slide__right {
     height: 461px;
+    overflow: hidden;
 }
 
 .slide__right img {
@@ -22,21 +27,14 @@
     object-fit:fill;
 }
 
-
-.slider__hover:hover {
-    transform: scale3d(1.05, 1.05, 1);
-    opacity: 0.8;
-    cursor: pointer;
-}
-
 /* product */
 .product {
-    padding-top: 40px;
+    padding-top: 24px;
 }
 
 .product__title {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     width: fit-content;
     color: #fff;
     background-color: var(--main-color);
@@ -71,7 +69,7 @@
     text-decoration: none !important;
     background: #fff;
     box-shadow: 2px 2px 0px rgb(0 0 0 / 30%);
-    border-radius: 6px;
+    border-radius:4px;
 }
 
 .product__percent {
@@ -181,14 +179,6 @@
     border-radius: 4px;
 }
 @media (min-width: 740px) and (max-width: 1023px) {
-    .search{
-        margin-left: 20px;
-    }
-
-    .header__cart{
-        margin-right: 20px;
-    }
-
     .main {
         -pd: 6px;
     }
@@ -218,7 +208,7 @@
     }
 
     .product__body{
-        height:110px;
+        min-height:110px;
     }
 
     .product__name {
@@ -239,25 +229,36 @@
 }
 
 @media (max-width: 739px) {
-    .main {
-        padding: 12px 0 16px;
+    /* CATEGORY */
+    .category__item:first-child{
+        width: 100%;
+        justify-content:center;
     }
 
-    .slider{
-        padding-top: 8px;
-    }
-
+    /* SLIDER */
     .slide__right{
         display: none !important;
+    }
+
+    /* MAIN */
+    .main {
+        padding: 12px 0 0;
+    }
+
+    .product{
+        padding-top: 12px;
     }
 
     .product__title {
         font-size: 14px;
     }
 
+    .product__list{
+        padding-top: 0;
+    }
+
     .product__wrap {
-        padding-top: 12px;
-        padding-right: 12px;
+        padding: 12px 12px 0 0;
     }
 
     .product__percent{
@@ -274,7 +275,7 @@
     }
 
     .product__body{
-        height: 110px;
+        min-height: 100px;
     }
 
     .product__name {
